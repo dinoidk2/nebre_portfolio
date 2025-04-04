@@ -19,12 +19,38 @@ const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; ico
   );
 };
 
+const SkillItem: React.FC<{ name: string; percentage: number; color: string }> = ({ name, percentage, color }) => {
+  return (
+    <div className="mb-3">
+      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-1">
+        <div className={`${color} h-2.5 rounded-full`} style={{width: `${percentage}%`}}></div>
+      </div>
+      <div className="flex justify-between text-xs">
+        <span>{name}</span>
+        <span>{percentage}%</span>
+      </div>
+    </div>
+  );
+};
+
 const Profile: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null);
   
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  const skillsInfo = {
+    "Digital Art": "Proficient in drawing and painting, with experience in character design, illustration, and digital storytelling using tools like Clip Studio Paint, Photoshop, and Procreate.",
+    "Web Development": "Knowledgeable in front-end web development, including HTML, CSS, JavaScript, and React. Able to create responsive, user-friendly websites with a focus on accessibility and smooth user experience.",
+    "UI/UX Design": "Understanding of design principles that prioritize the user experience, with skills in wireframing, prototyping, and basic user research.",
+    "Project Leadership": "Experience leading student initiatives, advocating for academic support, organizing events, and working with a team to achieve goals. Known for being detail-oriented, empathetic, and communicative.",
+    "Communication": "Strong written and verbal communication skills, especially in creating clear and engaging content. Skilled at explaining complex ideas in a simple, understandable way.",
+    "Creative Writing & Storytelling": "Ability to craft engaging narratives, whether through visual media or written content. Passion for exploring character-driven, emotionally rich stories in manga, literature, and other media.",
+    "Problem Solving": "Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces.",
+    "Time Management": "Able to balance multiple responsibilities effectively, from leadership roles to creative projects, ensuring tasks are completed on time with attention to detail."
+  };
   
   return (
     <div className="page-container bg-gradient-to-bl from-monet-yellow/30 via-vangogh-teal/30 to-monet-purple/20">
@@ -108,33 +134,32 @@ const Profile: React.FC = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4">
               <InfoCard 
                 title="Skills" 
                 icon="✦" 
                 color="border-spiderverse-blue"
                 content={
                   <div className="mt-2 space-y-2">
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-spiderverse-blue h-2.5 rounded-full" style={{width: '90%'}}></div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <span>Digital Art</span>
-                        <span>90%</span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-spiderverse-purple h-2.5 rounded-full" style={{width: '85%'}}></div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <span>Leadership</span>
-                        <span>85%</span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2.5">
-                      <div className="bg-spiderverse-pink h-2.5 rounded-full" style={{width: '80%'}}></div>
-                      <div className="flex justify-between text-xs mt-1">
-                        <span>Web Development</span>
-                        <span>80%</span>
-                      </div>
+                    <SkillItem name="Digital Art" percentage={90} color="bg-spiderverse-blue" />
+                    <SkillItem name="Web Development" percentage={80} color="bg-spiderverse-purple" />
+                    <SkillItem name="Leadership" percentage={85} color="bg-spiderverse-pink" />
+                    
+                    <div className="mt-6">
+                      {Object.entries(skillsInfo).map(([skill, description], index) => (
+                        <div key={index} className="mb-3">
+                          <button
+                            onClick={() => setExpandedSkill(expandedSkill === skill ? null : skill)}
+                            className="font-bold text-left w-full flex justify-between items-center"
+                          >
+                            <span>{skill}</span>
+                            <span>{expandedSkill === skill ? '−' : '+'}</span>
+                          </button>
+                          {expandedSkill === skill && (
+                            <p className="mt-1 text-sm text-gray-700">{description}</p>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 }
