@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "./", // Add this line for GitHub Pages deployment
+  base: "/spiderverse-palette-dreams/",
   server: {
     host: "::",
     port: 8080,
