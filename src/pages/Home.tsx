@@ -1,5 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const nameRef = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ const Home: React.FC = () => {
           <div className="relative mb-8 inline-block">
             <div className="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
             <img 
-              src="/lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
+              src="./lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
               alt="Oceana Viktoria" 
               className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
               style={{ objectPosition: "center 35%" }} /* Adjusted to show beanie by moving image up */
@@ -67,18 +68,18 @@ const Home: React.FC = () => {
           
           {/* Call to Action */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href="/profile" 
+            <Link 
+              to="/profile" 
               className="comic-border bg-spiderverse-blue px-6 py-2 text-white font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:-rotate-2"
             >
               My Profile
-            </a>
-            <a 
-              href="/hobbies" 
+            </Link>
+            <Link 
+              to="/hobbies" 
               className="comic-border bg-spiderverse-yellow px-6 py-2 text-black font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:rotate-2"
             >
               My Hobbies
-            </a>
+            </Link>
           </div>
         </div>
         
