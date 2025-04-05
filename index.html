@@ -1,329 +1,115 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oceana Viktoria Portfolio</title>
-    <meta name="description" content="Personal portfolio of Oceana Viktoria" />
-    <meta name="author" content="Oceana Viktoria" />
-
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-  </head>
-
-  <body>
+</head>
+<body>
     <div id="root">
-      <!-- Navigation -->
-      <nav id="desktop-nav" class="hidden md:flex fixed top-0 left-0 w-full z-40 px-8 py-4 justify-center transition-all duration-300">
-        <div class="flex space-x-8">
-          <a href="#home" class="nav-link" data-page="home">Home</a>
-          <a href="#profile" class="nav-link" data-page="profile">Profile</a>
-          <a href="#hobbies" class="nav-link" data-page="hobbies">Hobbies</a>
-          <a href="#contact" class="nav-link" data-page="contact">Contact</a>
-        </div>
-      </nav>
-      
-      <!-- Mobile Navigation -->
-      <div class="block md:hidden">
-        <button id="mobile-menu-button" class="fixed top-4 right-4 z-50 p-2 rounded-full comic-border bg-white transition-all">
-          <div class="w-6 h-0.5 bg-black mb-1.5"></div>
-          <div class="w-6 h-0.5 bg-black mb-1.5"></div>
-          <div class="w-6 h-0.5 bg-black"></div>
-        </button>
+        <!-- Navigation -->
+        <nav id="desktop-nav" class="fixed top-0 left-0 w-full z-40 px-8 py-4 flex justify-center transition-all duration-300 bg-white/80 backdrop-blur-md shadow-lg">
+            <div class="flex space-x-8">
+                <a href="index.html" class="nav-link bg-spiderverse-purple text-white">Home</a>
+                <a href="profile.html" class="nav-link hover:text-spiderverse-purple">Profile</a>
+                <a href="hobbies.html" class="nav-link hover:text-spiderverse-purple">Hobbies</a>
+                <a href="contact.html" class="nav-link hover:text-spiderverse-purple">Contact</a>
+            </div>
+        </nav>
         
-        <div id="mobile-menu" class="fixed inset-0 z-40 bg-gradient-to-br from-spiderverse-purple via-spiderverse-blue to-spiderverse-pink backdrop-blur-md transition-all duration-500 opacity-0 pointer-events-none">
-          <div class="flex flex-col items-center justify-center h-full">
-            <a href="#home" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300" data-page="home">Home</a>
-            <a href="#profile" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300" data-page="profile">Profile</a>
-            <a href="#hobbies" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300" data-page="hobbies">Hobbies</a>
-            <a href="#contact" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300" data-page="contact">Contact</a>
-          </div>
+        <!-- Mobile Navigation -->
+        <div class="block md:hidden">
+            <button id="mobile-menu-button" class="fixed top-4 right-4 z-50 p-2 rounded-full comic-border bg-white transition-all">
+                <div class="w-6 h-0.5 bg-black mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-black mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-black"></div>
+            </button>
+            
+            <div id="mobile-menu" class="fixed inset-0 z-40 bg-gradient-to-br from-spiderverse-purple via-spiderverse-blue to-spiderverse-pink backdrop-blur-md transition-all duration-500 opacity-0 pointer-events-none">
+                <div class="flex flex-col items-center justify-center h-full">
+                    <a href="index.html" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300">Home</a>
+                    <a href="profile.html" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300">Profile</a>
+                    <a href="hobbies.html" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300">Hobbies</a>
+                    <a href="contact.html" class="nav-link text-white text-3xl my-4 hover:scale-125 transition-all duration-300">Contact</a>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Cursor Effects -->
-      <div id="cursor-dot" class="cursor-dot"></div>
-      <div id="cursor-trails-container"></div>
-      <div id="explosion-container"></div>
+        <!-- Cursor Effects -->
+        <div id="cursor-dot" class="cursor-dot"></div>
+        <div id="cursor-trails-container"></div>
+        <div id="explosion-container"></div>
 
-      <!-- Pages Container -->
-      <div id="pages-container">
         <!-- Home Page -->
         <div id="home" class="page active page-container bg-gradient-to-br from-monet-blue/30 via-vangogh-yellow/30 to-monet-purple/30">
-          <div class="absolute inset-0 bg-halftone-dots opacity-20 pointer-events-none"></div>
-          
-          <div class="min-h-screen flex flex-col justify-center items-center relative">
-            <!-- Background Elements -->
-            <div class="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-spiderverse-purple to-spiderverse-blue rounded-full blur-xl opacity-40 animate-pulse-light"></div>
-            <div class="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
-            <div class="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
+            <div class="absolute inset-0 bg-halftone-dots opacity-20 pointer-events-none"></div>
             
-            <!-- Main Content -->
-            <div class="z-10 mt-20 md:mt-0">
-              <h1 class="comic-title text-spiderverse-purple mb-2">
-                <div id="name-container" class="inline-flex flex-wrap justify-center">
-                  <!-- Letters will be added by JavaScript -->
-                </div>
-              </h1>
-              <h2 class="comic-subtitle text-spiderverse-blue mb-6">Digital Artist · Web Developer · Student</h2>
-              
-              <!-- Profile Image with Comic Style Border -->
-              <div class="relative mb-8 inline-block">
-                <div class="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
-                <img 
-                  src="./lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
-                  alt="Oceana Viktoria" 
-                  class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
-                  style="object-position: center 35%" 
-                />
-                <div class="absolute -top-6 -right-6 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 transform rotate-12">
-                  <span class="text-xl font-bold">!</span>
-                </div>
-                <div class="absolute -bottom-2 -left-6 w-16 h-16 bg-spiderverse-pink comic-border p-2 rounded-full z-20 transform -rotate-6">
-                  <span class="text-xl font-bold">:)</span>
-                </div>
-              </div>
-              
-              <!-- Welcome Text -->
-              <div class="impressionist-card max-w-lg mx-auto mb-6 transform hover:rotate-1">
-                <p class="text-lg">Welcome to my portfolio! I'm passionate about art, web development, and creative expression. Explore my work and get to know me better!</p>
-              </div>
-              
-              <!-- Call to Action -->
-              <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a 
-                  href="#profile" 
-                  class="comic-border bg-spiderverse-blue px-6 py-2 text-white font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:-rotate-2 nav-link"
-                  data-page="profile"
-                >
-                  My Profile
-                </a>
-                <a 
-                  href="#hobbies" 
-                  class="comic-border bg-spiderverse-yellow px-6 py-2 text-black font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:rotate-2 nav-link"
-                  data-page="hobbies"
-                >
-                  My Hobbies
-                </a>
-              </div>
-            </div>
-            
-            <!-- Decorative Comic Elements -->
-            <div class="absolute bottom-4 right-4 bg-white/60 backdrop-blur-sm p-4 rounded-full comic-border hidden md:block">
-              <div class="text-sm font-bold">Portfolio 2025</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Profile Page -->
-        <div id="profile" class="page page-container bg-gradient-to-tl from-vangogh-yellow/20 via-monet-purple/20 to-vangogh-blue/20 hidden">
-          <div class="absolute inset-0 bg-halftone-dots opacity-10 pointer-events-none"></div>
-          
-          <div class="container mx-auto py-20 md:py-28 px-4">
-            <h1 class="comic-title text-spiderverse-blue mb-8">About Me</h1>
-            
-            <div class="max-w-4xl mx-auto">
-              <!-- Profile Content -->
-              <section class="mb-16">
-                <div class="impressionist-card mb-8">
-                  <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/3 mb-6 md:mb-0">
-                      <div class="relative inline-block">
-                        <img 
-                          src="./lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
-                          alt="Oceana Viktoria" 
-                          class="w-48 h-48 object-cover rounded-full comic-border shadow-lg"
-                          style="object-position: center 35%"
-                        />
-                        <div class="absolute -bottom-3 -right-3 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 flex items-center justify-center">
-                          <span class="text-xl font-bold">!</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="md:w-2/3 md:pl-8 text-left">
-                      <h2 class="comic-subtitle text-spiderverse-purple mb-4">Oceana Viktoria</h2>
-                      <p class="mb-4">
-                        I'm a digital artist, web developer, and student with a passion for creative storytelling through visual media. 
-                        My work combines technical skills with artistic expression, focusing on creating experiences that connect with people emotionally.
-                      </p>
-                      <p>
-                        When I'm not coding or creating art, you can find me reading manga, exploring new design trends, 
-                        or working on character development for my personal projects.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-              
-              <!-- Skills Section -->
-              <section class="mb-16">
-                <h2 class="comic-subtitle text-spiderverse-purple mb-6">My Skills</h2>
+            <div class="min-h-screen flex flex-col justify-center items-center relative">
+                <!-- Background Elements -->
+                <div class="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-spiderverse-purple to-spiderverse-blue rounded-full blur-xl opacity-40 animate-pulse-light"></div>
+                <div class="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
+                <div class="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
                 
-                <div class="grid grid-cols-1 gap-6">
-                  <div class="impressionist-card">
-                    <div id="skills-container">
-                      <!-- Skills content will be added by JavaScript -->
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-
-        <!-- Hobbies Page -->
-        <div id="hobbies" class="page page-container bg-gradient-to-tr from-monet-green/20 via-vangogh-yellow/20 to-monet-blue/20 hidden">
-          <div class="absolute inset-0 bg-halftone-dots opacity-10 pointer-events-none"></div>
-          
-          <div class="container mx-auto py-20 md:py-28 px-4">
-            <h1 class="comic-title text-spiderverse-yellow mb-8">My Hobbies</h1>
-            
-            <div class="max-w-3xl mx-auto">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="hobbies-grid">
-                <!-- Hobbies will be added by JavaScript -->
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Contact Page -->
-        <div id="contact" class="page page-container bg-gradient-to-bl from-spiderverse-pink/20 via-monet-blue/20 to-vangogh-teal/20 hidden">
-          <div class="absolute inset-0 bg-halftone-dots opacity-10 pointer-events-none"></div>
-          
-          <div class="container mx-auto py-20 md:py-28 px-4">
-            <h1 class="comic-title text-spiderverse-pink mb-8">Get In Touch</h1>
-            
-            <div class="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <!-- Contact Info -->
-              <div class="transition-all duration-500 delay-100">
-                <div class="impressionist-card mb-6 text-left h-full">
-                  <h2 class="comic-subtitle text-spiderverse-purple mb-6">Contact Information</h2>
-                  
-                  <div class="space-y-6">
-                    <div>
-                      <div 
-                        class="flex items-center justify-between p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors cursor-pointer"
-                        onclick="copyToClipboard('oceanaviktorial@gmail.com')"
-                      >
-                        <div class="flex items-center">
-                          <div class="w-10 h-10 rounded-full bg-spiderverse-blue flex items-center justify-center text-white mr-3">
-                            ✉️
-                          </div>
-                          <div>
-                            <div class="text-sm text-gray-600">Email</div>
-                            <div class="font-medium">oceanaviktorial@gmail.com</div>
-                          </div>
+                <!-- Main Content -->
+                <div class="z-10 mt-20 md:mt-0">
+                    <h1 class="comic-title text-spiderverse-purple mb-2">
+                        <div id="name-container" class="inline-flex flex-wrap justify-center">
+                            <!-- Letters will be added by JavaScript -->
+                            <span class="letter">O</span><span class="letter">c</span><span class="letter">e</span><span class="letter">a</span><span class="letter">n</span><span class="letter">a</span><span class="letter"> </span><span class="letter">V</span><span class="letter">i</span><span class="letter">k</span><span class="letter">t</span><span class="letter">o</span><span class="letter">r</span><span class="letter">i</span><span class="letter">a</span>
                         </div>
-                        <button class="text-spiderverse-blue">
-                          Copy
-                        </button>
-                      </div>
+                    </h1>
+                    <h2 class="comic-subtitle text-spiderverse-blue mb-6">Digital Artist · Web Developer · Student</h2>
+                    
+                    <!-- Profile Image with Comic Style Border -->
+                    <div class="relative mb-8 inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
+                        <img 
+                            src="lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
+                            alt="Oceana Viktoria" 
+                            class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
+                            style="object-position: center 35%" 
+                        />
+                        <div class="absolute -top-6 -right-6 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 transform rotate-12">
+                            <span class="text-xl font-bold">!</span>
+                        </div>
+                        <div class="absolute -bottom-2 -left-6 w-16 h-16 bg-spiderverse-pink comic-border p-2 rounded-full z-20 transform -rotate-6">
+                            <span class="text-xl font-bold">:)</span>
+                        </div>
                     </div>
                     
-                    <div>
-                      <div class="flex items-center p-4 bg-white/50 rounded-lg">
-                        <div class="w-10 h-10 rounded-full bg-spiderverse-pink flex items-center justify-center text-white mr-3">
-                          📱
-                        </div>
-                        <div>
-                          <div class="text-sm text-gray-600">Social Media</div>
-                          <div class="font-medium">Connect with me online</div>
-                        </div>
-                      </div>
-                      
-                      <div class="mt-4 flex flex-wrap gap-3">
-                        <a href="#" class="p-3 bg-white/70 rounded-full hover:bg-white transition-colors">
-                          <div class="w-8 h-8 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-spiderverse-blue" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.294h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-                            </svg>
-                          </div>
-                        </a>
-                        <a href="#" class="p-3 bg-white/70 rounded-full hover:bg-white transition-colors">
-                          <div class="w-8 h-8 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-spiderverse-pink" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.441 16.892c-2.102.144-6.784.144-8.883 0-2.276-.156-2.541-1.27-2.558-4.892.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0 2.277.156 2.541 1.27 2.559 4.892-.018 3.629-.285 4.736-2.559 4.892zm-6.441-7.234l4.917 2.338-4.917 2.346v-4.684z"/>
-                            </svg>
-                          </div>
-                        </a>
-                        <a href="#" class="p-3 bg-white/70 rounded-full hover:bg-white transition-colors">
-                          <div class="w-8 h-8 flex items-center justify-center">
-                            <svg class="w-5 h-5 text-spiderverse-purple" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                          </div>
-                        </a>
-                      </div>
+                    <!-- Welcome Text -->
+                    <div class="impressionist-card max-w-lg mx-auto mb-6 transform hover:rotate-1">
+                        <p class="text-lg">Welcome to my portfolio! I'm passionate about art, web development, and creative expression. Explore my work and get to know me better!</p>
                     </div>
-                  </div>
+                    
+                    <!-- Call to Action -->
+                    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a 
+                            href="profile.html" 
+                            class="comic-border bg-spiderverse-blue px-6 py-2 text-white font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:-rotate-2"
+                        >
+                            My Profile
+                        </a>
+                        <a 
+                            href="hobbies.html" 
+                            class="comic-border bg-spiderverse-yellow px-6 py-2 text-black font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:rotate-2"
+                        >
+                            My Hobbies
+                        </a>
+                    </div>
                 </div>
-              </div>
-              
-              <!-- Contact Form -->
-              <div class="transition-all duration-500 delay-200">
-                <form id="contact-form" class="impressionist-card">
-                  <h2 class="comic-subtitle text-spiderverse-blue mb-6 text-left">Send a Message</h2>
-                  
-                  <div class="mb-4">
-                    <label for="name" class="block text-left text-sm font-medium text-gray-700 mb-1">Name</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      name="name" 
-                      required
-                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-spiderverse-purple focus:border-transparent"
-                    >
-                  </div>
-                  
-                  <div class="mb-4">
-                    <label for="email" class="block text-left text-sm font-medium text-gray-700 mb-1">Email</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
-                      required
-                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-spiderverse-purple focus:border-transparent"
-                    >
-                  </div>
-                  
-                  <div class="mb-6">
-                    <label for="message" class="block text-left text-sm font-medium text-gray-700 mb-1">Message</label>
-                    <textarea 
-                      id="message" 
-                      name="message" 
-                      rows="5" 
-                      required
-                      class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-spiderverse-purple focus:border-transparent"
-                    ></textarea>
-                  </div>
-                  
-                  <div class="text-right">
-                    <button 
-                      type="submit"
-                      class="comic-border bg-spiderverse-pink px-6 py-2 text-white font-bold rounded-lg transform transition-transform hover:scale-105"
-                    >
-                      Send Message
-                    </button>
-                  </div>
-                </form>
-              </div>
+                
+                <!-- Decorative Comic Elements -->
+                <div class="absolute bottom-4 right-4 bg-white/60 backdrop-blur-sm p-4 rounded-full comic-border hidden md:block">
+                    <div class="text-sm font-bold">Portfolio 2025</div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Modal Container for Hobbies -->
-    <div id="modal-container" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center transition-all duration-300">
-      <!-- Modal content will be injected by JavaScript -->
-    </div>
-
-    <!-- Toast for notifications -->
-    <div id="toast" class="fixed bottom-4 right-4 bg-white p-4 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50">
-      <div id="toast-message">Message copied to clipboard!</div>
     </div>
 
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
