@@ -48,7 +48,7 @@ const Home: React.FC = () => {
           <div className="relative mb-8 inline-block">
             <div className="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
             <img 
-              src="./lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
+              src="/lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
               alt="Oceana Viktoria" 
               className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
               style={{ objectPosition: "center 35%" }} /* Adjusted to show beanie by moving image up */

@@ -16,7 +16,23 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize hobby modals
   initializeHobbyModals();
+
+  // Ensure images load correctly
+  fixImagePaths();
 });
+
+// Fix image paths
+function fixImagePaths() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.src.includes('lovable-uploads') && !img.src.includes('http')) {
+      // If it's a relative path, make sure it's correct
+      if (img.src.startsWith('/')) {
+        img.src = img.src.substring(1); // Remove leading slash if it exists
+      }
+    }
+  });
+}
 
 // Mobile Menu
 function initializeMobileMenu() {
