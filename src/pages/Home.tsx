@@ -31,9 +31,9 @@ const Home: React.FC = () => {
         <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
         <div className="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
         
-        {/* Main Content - Improved mobile centering with proper padding for nav */}
-        <div className="z-10 flex flex-col items-center w-full px-4 mt-8 md:mt-0">
-          <h1 className="comic-title text-spiderverse-purple mb-2">
+        {/* Main Content - Improved centering */}
+        <div className="z-10 flex flex-col items-center w-full px-4 mt-16 md:mt-8">
+          <h1 className="comic-title text-spiderverse-purple mb-2 text-center">
             <div ref={nameRef} className="inline-flex flex-wrap justify-center">
               {'Oceana Viktoria'.split('').map((char, i) => (
                 <span key={i} className="letter inline-block transform transition-transform duration-300 hover:scale-125 hover:-rotate-6">
@@ -44,8 +44,8 @@ const Home: React.FC = () => {
           </h1>
           <h2 className="comic-subtitle text-spiderverse-blue mb-6 text-center">Digital Artist · Web Developer · Student</h2>
           
-          {/* Profile Image with Comic Style Border - Centered with fixed width container */}
-          <div className="relative mb-8 flex justify-center w-full">
+          {/* Profile Image with Comic Style Border - Centered with improved alignment */}
+          <div className="flex justify-center w-full mb-8">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
               <img 

@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import InteractiveCard from '../components/InteractiveCard';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
 const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; icon: string; color: string }> = ({ title, content, icon, color }) => {
   return (
@@ -110,33 +112,66 @@ const Profile: React.FC = () => {
               }
             />
 
-            {/* Interactive Cards Section */}
+            {/* Interactive Cards Section - replaced with popover for better mobile experience */}
             <InfoCard 
               title="More About Me" 
               icon="💡" 
               color="border-spiderverse-blue"
               content={
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
-                  <InteractiveCard title="MBTI" icon="🧠">
-                    <h4 className="font-bold mb-1">INFP</h4>
-                    <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
-                    <p className="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
-                  </InteractiveCard>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                        <span className="text-3xl mb-2">🧠</span>
+                        <h3 className="font-bold text-lg">MBTI</h3>
+                        <div className="mt-2 text-spiderverse-purple">
+                          <span className="text-xs">Click to reveal</span>
+                        </div>
+                      </div>
+                    </PopoverTrigger>
+                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
+                      <h4 className="font-bold mb-1">INFP</h4>
+                      <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
+                      <p className="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
+                    </PopoverContent>
+                  </Popover>
                   
-                  <InteractiveCard title="Favorite Game" icon="🎮">
-                    <h4 className="font-bold mb-1">OMORI</h4>
-                    <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
-                    <p className="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
-                  </InteractiveCard>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                        <span className="text-3xl mb-2">🎮</span>
+                        <h3 className="font-bold text-lg">Favorite Game</h3>
+                        <div className="mt-2 text-spiderverse-purple">
+                          <span className="text-xs">Click to reveal</span>
+                        </div>
+                      </div>
+                    </PopoverTrigger>
+                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
+                      <h4 className="font-bold mb-1">OMORI</h4>
+                      <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
+                      <p className="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
+                    </PopoverContent>
+                  </Popover>
                   
-                  <InteractiveCard title="Things I Value" icon="✨">
-                    <ul className="list-disc list-inside">
-                      <li><span className="font-bold">Authenticity</span> - Being true to oneself</li>
-                      <li><span className="font-bold">Creativity</span> - Finding new perspectives</li>
-                      <li><span className="font-bold">Personal Growth</span> - Continuous learning</li>
-                      <li><span className="font-bold">Empathy</span> - Understanding others</li>
-                    </ul>
-                  </InteractiveCard>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                        <span className="text-3xl mb-2">✨</span>
+                        <h3 className="font-bold text-lg">Things I Value</h3>
+                        <div className="mt-2 text-spiderverse-purple">
+                          <span className="text-xs">Click to reveal</span>
+                        </div>
+                      </div>
+                    </PopoverTrigger>
+                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
+                      <ul className="list-disc list-inside">
+                        <li><span className="font-bold">Authenticity</span> - Being true to oneself</li>
+                        <li><span className="font-bold">Creativity</span> - Finding new perspectives</li>
+                        <li><span className="font-bold">Personal Growth</span> - Continuous learning</li>
+                        <li><span className="font-bold">Empathy</span> - Understanding others</li>
+                      </ul>
+                    </PopoverContent>
+                  </Popover>
                 </div>
               }
             />

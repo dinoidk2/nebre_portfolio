@@ -48,9 +48,9 @@ const HobbyModal: React.FC<HobbyModalProps> = ({ open, onClose, title, children 
         className="bg-white/90 backdrop-blur-md rounded-lg w-full max-w-2xl max-h-[85vh] shadow-xl relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
+        {/* Close button - made more obvious and larger for mobile */}
         <button 
-          className="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full bg-spiderverse-pink text-white hover:bg-spiderverse-purple transition-colors"
+          className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-spiderverse-pink text-white hover:bg-spiderverse-purple transition-colors z-10"
           onClick={onClose}
         >
           ✕

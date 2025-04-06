@@ -39,6 +39,7 @@ const Navigation: React.FC = () => {
         className={`hidden md:flex fixed top-0 left-0 w-full z-40 px-4 py-2 justify-center transition-all duration-300 ${
           scrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
+        style={{ height: "60px" }}
       >
         <div className="max-w-screen-xl w-full flex justify-center">
           <div className="flex space-x-4 md:space-x-8 overflow-visible">
