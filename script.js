@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize hobby modals
   initializeHobbyModals();
 
+  // Initialize interactive cards
+  initializeInteractiveCards();
+
   // Ensure images load correctly
   fixImagePaths();
 });
@@ -179,6 +182,17 @@ function initializeSkillToggles() {
         content.style.height = '0';
         toggle.textContent = '+'; // Plus sign
       }
+    });
+  });
+}
+
+// Initialize interactive cards
+function initializeInteractiveCards() {
+  const cards = document.querySelectorAll('.interactive-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('click', function() {
+      this.classList.toggle('flipped');
     });
   });
 }

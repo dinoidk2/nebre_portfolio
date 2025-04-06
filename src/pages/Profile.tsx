@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import InteractiveCard from '../components/InteractiveCard';
 
 const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; icon: string; color: string }> = ({ title, content, icon, color }) => {
   return (
@@ -64,19 +65,19 @@ const Profile: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Profile Image and Basic Info */}
           <div className={`transition-all duration-500 delay-100 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="relative mb-6 inline-block">
+            <div className="relative mb-6 mx-auto text-center">
               <div className="absolute inset-0 bg-gradient-to-tr from-vangogh-yellow via-vangogh-orange to-vangogh-teal rounded-lg blur-lg animate-pulse-light transform scale-105"></div>
               <img 
                 src="/lovable-uploads/e19a45aa-9e40-412c-bb19-55d218ffbbe0.png" 
                 alt="Oceana Viktoria" 
-                className="w-full max-w-md h-auto object-cover object-center rounded-lg comic-border relative z-10"
+                className="w-full max-w-md h-auto object-cover object-center rounded-lg comic-border relative z-10 mx-auto"
               />
               <div className="absolute -top-4 -right-4 w-16 h-16 bg-spiderverse-blue comic-border p-2 rounded-full z-20 transform rotate-12 flex items-center justify-center text-white font-bold">
                 15
               </div>
             </div>
             
-            <div className="impressionist-card max-w-md mx-auto mb-6 text-left">
+            <div className="impressionist-card w-full max-w-lg mx-auto mb-6 text-left">
               <h2 className="font-bold text-2xl mb-2">Oceana Viktoria S. Nebre</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -100,11 +101,42 @@ const Profile: React.FC = () => {
               color="border-spiderverse-pink"
               content={
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
-                  {['SEVENTEEN', 'Cup Of Joe', 'My Bloody Valentine'].map((artist, index) => (
+                  {['SEVENTEEN', 'Cup Of Joe', 'My Bloody Valentine', 'Paramore'].map((artist, index) => (
                     <div key={index} className="bg-white/50 rounded-lg p-3 transform transition-transform hover:scale-105 hover:shadow-md">
                       <p className="font-medium">{artist}</p>
                     </div>
                   ))}
+                </div>
+              }
+            />
+
+            {/* Interactive Cards Section */}
+            <InfoCard 
+              title="More About Me" 
+              icon="💡" 
+              color="border-spiderverse-blue"
+              content={
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
+                  <InteractiveCard title="MBTI" icon="🧠">
+                    <h4 className="font-bold mb-1">INFP</h4>
+                    <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
+                    <p className="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
+                  </InteractiveCard>
+                  
+                  <InteractiveCard title="Favorite Game" icon="🎮">
+                    <h4 className="font-bold mb-1">OMORI</h4>
+                    <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
+                    <p className="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
+                  </InteractiveCard>
+                  
+                  <InteractiveCard title="Things I Value" icon="✨">
+                    <ul className="list-disc list-inside">
+                      <li><span className="font-bold">Authenticity</span> - Being true to oneself</li>
+                      <li><span className="font-bold">Creativity</span> - Finding new perspectives</li>
+                      <li><span className="font-bold">Personal Growth</span> - Continuous learning</li>
+                      <li><span className="font-bold">Empathy</span> - Understanding others</li>
+                    </ul>
+                  </InteractiveCard>
                 </div>
               }
             />

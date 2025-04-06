@@ -149,11 +149,31 @@ const Hobbies: React.FC = () => {
               stories with emotionally rich characters and thought-provoking themes.
             </p>
             
-            <h3 className="font-bold text-xl mt-4 mb-2">My Favorite Genres</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-              {['Manga', 'Manhwa', 'Manhua', 'Web Novels', 'Novels'].map((genre) => (
-                <div key={genre} className="bg-white/50 p-2 rounded-md text-center">
+            <h3 className="font-bold text-xl mt-4 mb-2">Genres I Enjoy</h3>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {[
+                'Psychological Fiction', 
+                'Existential Fiction', 
+                'Philosophical Fiction', 
+                'Drama', 
+                'Romance', 
+                'Fantasy / Supernatural',
+                'Slice of Life',
+                'Coming-of-Age',
+                'Psychological Drama',
+                'Philosophical Sci-Fi / Speculative Fiction'
+              ].map((genre) => (
+                <div key={genre} className="bg-white/50 px-3 py-1 rounded-full text-sm">
                   {genre}
+                </div>
+              ))}
+            </div>
+            
+            <h3 className="font-bold text-xl mt-4 mb-2">Mediums</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+              {['Manga', 'Manhwa', 'Manhua', 'Web Novels', 'Novels', 'Novella'].map((medium) => (
+                <div key={medium} className="bg-white/50 p-2 rounded-md text-center">
+                  {medium}
                 </div>
               ))}
             </div>

@@ -65,25 +65,26 @@ const Navigation: React.FC = () => {
         </div>
       </nav>
       
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Updated for better alignment */}
       <div className="block md:hidden">
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Moved slightly inward */}
         <button 
           onClick={() => setIsOpen(!isOpen)}
           className={`fixed top-4 right-4 z-50 p-2 rounded-full comic-border bg-white transition-all ${isOpen ? 'rotate-90' : ''}`}
+          aria-label="Toggle menu"
         >
           <div className="w-6 h-0.5 bg-black mb-1.5"></div>
           <div className="w-6 h-0.5 bg-black mb-1.5"></div>
           <div className="w-6 h-0.5 bg-black"></div>
         </button>
         
-        {/* Mobile Menu Overlay */}
+        {/* Mobile Menu Overlay - Improved padding */}
         <div 
           className={`fixed inset-0 z-40 bg-gradient-to-br from-spiderverse-purple via-spiderverse-blue to-spiderverse-pink backdrop-blur-md transition-all duration-500 ${
             isOpen ? 'opacity-95' : 'opacity-0 pointer-events-none'
           }`}
         >
-          <div className="flex flex-col items-center justify-center h-full">
+          <div className="flex flex-col items-center justify-center h-full px-6">
             {links.map((link) => (
               <Link
                 key={link.name}

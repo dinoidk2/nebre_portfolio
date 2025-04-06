@@ -112,6 +112,23 @@
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M67.1,-22.1C78.6,6.4,73.6,42.1,54.7,60.5C35.7,79,2.7,80.2,-27.2,67.8C-57.2,55.3,-84,-0.9,-77,-42.9C-70,-84.9,-29.1,-112.7,1.5,-113.4C32.1,-114,55.7,-50.6,67.1,-22.1Z' transform='translate(100 100)'%3E%3C/path%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='black' d='M67.1,-22.1C78.6,6.4,73.6,42.1,54.7,60.5C35.7,79,2.7,80.2,-27.2,67.8C-57.2,55.3,-84,-0.9,-77,-42.9C-70,-84.9,-29.1,-112.7,1.5,-113.4C32.1,-114,55.7,-50.6,67.1,-22.1Z' transform='translate(100 100)'%3E%3C/path%3E%3C/svg%3E");
   }
+
+  /* Card flip animation classes */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
 }
 
 @layer utilities {

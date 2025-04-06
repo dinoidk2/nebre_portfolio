@@ -31,8 +31,8 @@ const Home: React.FC = () => {
         <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
         <div className="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
         
-        {/* Main Content */}
-        <div className="z-10 mt-20 md:mt-0">
+        {/* Main Content - Improved mobile centering */}
+        <div className="z-10 mt-20 md:mt-0 flex flex-col items-center w-full px-4">
           <h1 className="comic-title text-spiderverse-purple mb-2">
             <div ref={nameRef} className="inline-flex flex-wrap justify-center">
               {'Oceana Viktoria'.split('').map((char, i) => (
@@ -42,10 +42,10 @@ const Home: React.FC = () => {
               ))}
             </div>
           </h1>
-          <h2 className="comic-subtitle text-spiderverse-blue mb-6">Digital Artist · Web Developer · Student</h2>
+          <h2 className="comic-subtitle text-spiderverse-blue mb-6 text-center">Digital Artist · Web Developer · Student</h2>
           
-          {/* Profile Image with Comic Style Border - Fixed positioning to show beanie */}
-          <div className="relative mb-8 inline-block">
+          {/* Profile Image with Comic Style Border - Improved centering */}
+          <div className="relative mb-8 inline-block mx-auto">
             <div className="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
             <img 
               src="/lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
@@ -62,12 +62,12 @@ const Home: React.FC = () => {
           </div>
           
           {/* Welcome Text */}
-          <div className="impressionist-card max-w-lg mx-auto mb-6 transform hover:rotate-1">
+          <div className="impressionist-card max-w-lg mx-auto mb-6 transform hover:rotate-1 w-full">
             <p className="text-lg">Welcome to my portfolio! I'm passionate about art, web development, and creative expression. Explore my work and get to know me better!</p>
           </div>
           
           {/* Call to Action */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <Link 
               to="/profile" 
               className="comic-border bg-spiderverse-blue px-6 py-2 text-white font-bold text-lg rounded-lg transform transition-transform hover:scale-105 hover:-rotate-2"
