@@ -169,15 +169,6 @@ const Hobbies: React.FC = () => {
               ))}
             </div>
             
-            <h3 className="font-bold text-xl mt-4 mb-2">Mediums</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
-              {['Manga', 'Manhwa', 'Manhua', 'Web Novels', 'Novels', 'Novella'].map((medium) => (
-                <div key={medium} className="bg-white/50 p-2 rounded-md text-center">
-                  {medium}
-                </div>
-              ))}
-            </div>
-            
             <h3 className="font-bold text-xl mt-4 mb-2">Favorite Reads</h3>
             <ul className="list-disc list-inside">
               <li>Schoolgirl by Osamu Dazai</li>

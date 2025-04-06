@@ -36,32 +36,34 @@ const Navigation: React.FC = () => {
     <>
       {/* Desktop Navigation - Fixed width and better centering */}
       <nav 
-        className={`hidden md:flex fixed top-0 left-0 w-full z-40 px-4 py-3 justify-center transition-all duration-300 ${
+        className={`hidden md:flex fixed top-0 left-0 w-full z-40 px-4 py-2 justify-center transition-all duration-300 ${
           scrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
         }`}
       >
-        <div className="flex space-x-6 md:space-x-8">
-          {links.map((link) => {
-            const isActive = location.pathname === link.path;
-            const activeBg = (() => {
-              switch(link.name) {
-                case 'Home': return 'bg-spiderverse-purple text-white';
-                case 'Profile': return 'bg-spiderverse-blue text-white';
-                case 'Hobbies': return 'bg-spiderverse-yellow text-black';
-                case 'Contact': return 'bg-spiderverse-pink text-white';
-                default: return 'bg-black text-white';
-              }
-            })();
-            return (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`nav-link text-lg px-3 py-1 ${isActive ? activeBg : 'hover:text-spiderverse-purple'}`}
-              >
-                {link.name}
-              </Link>
-            );
-          })}
+        <div className="max-w-screen-xl w-full flex justify-center">
+          <div className="flex space-x-6 md:space-x-8 overflow-visible">
+            {links.map((link) => {
+              const isActive = location.pathname === link.path;
+              const activeBg = (() => {
+                switch(link.name) {
+                  case 'Home': return 'bg-spiderverse-purple text-white';
+                  case 'Profile': return 'bg-spiderverse-blue text-white';
+                  case 'Hobbies': return 'bg-spiderverse-yellow text-black';
+                  case 'Contact': return 'bg-spiderverse-pink text-white';
+                  default: return 'bg-black text-white';
+                }
+              })();
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`nav-link text-lg px-3 py-1 ${isActive ? activeBg : 'hover:text-spiderverse-purple'}`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </nav>
       

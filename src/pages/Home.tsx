@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     <div className="page-container bg-gradient-to-br from-monet-blue/30 via-vangogh-yellow/30 to-monet-purple/30">
       <div className="absolute inset-0 bg-halftone-dots opacity-20 pointer-events-none"></div>
       
-      <div className="min-h-screen flex flex-col justify-center items-center relative pt-20 md:pt-24">
+      <div className="min-h-screen flex flex-col justify-center items-center relative pt-28 md:pt-32">
         {/* Background Elements */}
         <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-spiderverse-purple to-spiderverse-blue rounded-full blur-xl opacity-40 animate-pulse-light"></div>
         <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
@@ -44,14 +44,14 @@ const Home: React.FC = () => {
           </h1>
           <h2 className="comic-subtitle text-spiderverse-blue mb-6 text-center">Digital Artist · Web Developer · Student</h2>
           
-          {/* Profile Image with Comic Style Border - Center aligned for both mobile and desktop */}
+          {/* Profile Image with Comic Style Border - Centered with fixed width container */}
           <div className="relative mb-8 w-full flex justify-center">
-            <div className="relative inline-block">
+            <div className="relative inline-block mx-auto">
               <div className="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
               <img 
                 src="/lovable-uploads/cc4a085f-8fbc-43b4-8826-cf726b0ad4cf.png" 
                 alt="Oceana Viktoria" 
-                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
+                className="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10 mx-auto"
                 style={{ objectPosition: "center 35%" }}
               />
               <div className="absolute -top-6 -right-6 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 transform rotate-12">

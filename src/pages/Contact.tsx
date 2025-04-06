@@ -63,16 +63,16 @@ const Contact: React.FC = () => {
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className={`transition-all duration-500 delay-100 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="impressionist-card mb-6 text-left h-full overflow-x-hidden">
+            <div className="impressionist-card mb-6 text-left h-full overflow-hidden">
               <h2 className="comic-subtitle text-spiderverse-purple mb-6">Contact Information</h2>
               
               <div className="space-y-6">
                 <div>
                   <div 
-                    className="flex items-center justify-between p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors cursor-pointer"
+                    className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors cursor-pointer"
                     onClick={() => copyToClipboard("oceanaviktorial@gmail.com")}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center flex-grow">
                       <div className="min-w-10 w-10 h-10 rounded-full bg-spiderverse-blue flex items-center justify-center text-white mr-3">
                         @
                       </div>
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                         <p className="text-sm truncate">oceanaviktorial@gmail.com</p>
                       </div>
                     </div>
-                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-1">
+                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-2">
                       {copied ? 'Copied!' : 'Click to copy'}
                     </span>
                   </div>
@@ -89,10 +89,10 @@ const Contact: React.FC = () => {
                 
                 <div>
                   <div 
-                    className="flex items-center justify-between p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors cursor-pointer"
+                    className="flex items-center p-4 bg-white/50 rounded-lg hover:bg-white/70 transition-colors cursor-pointer"
                     onClick={() => copyToClipboard("@oceanaviktoria.nebre")}
                   >
-                    <div className="flex items-center">
+                    <div className="flex items-center flex-grow">
                       <div className="min-w-10 w-10 h-10 rounded-full bg-spiderverse-pink flex items-center justify-center text-white mr-3">
                         #
                       </div>
@@ -101,7 +101,7 @@ const Contact: React.FC = () => {
                         <p className="text-sm truncate">@oceanaviktoria.nebre</p>
                       </div>
                     </div>
-                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-1">
+                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-2">
                       {copied ? 'Copied!' : 'Click to copy'}
                     </span>
                   </div>

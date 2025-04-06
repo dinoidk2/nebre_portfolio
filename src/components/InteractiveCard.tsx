@@ -12,19 +12,29 @@ const InteractiveCard: React.FC<InteractiveCardProps> = ({ title, icon, children
   const [isFlipped, setIsFlipped] = useState(false);
   const isMobile = useIsMobile();
   
-  // Ensure touch events work properly on mobile
+  // Reset flipped state when switching between mobile and desktop
   useEffect(() => {
-    // Reset flipped state when switching between mobile and desktop
     setIsFlipped(false);
   }, [isMobile]);
+
+  // Handle click event for both desktop and mobile
+  const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault(); // Prevent default behavior
+    setIsFlipped(!isFlipped);
+  };
 
   return (
     <div 
       className="relative w-full h-32 sm:h-40 cursor-pointer perspective-1000"
-      onClick={() => setIsFlipped(!isFlipped)}
-      onTouchEnd={(e) => {
-        e.preventDefault(); // Prevent default touch behavior
-        setIsFlipped(!isFlipped);
+      onClick={handleInteraction}
+      onTouchEnd={handleInteraction}
+      role="button"
+      tabIndex={0}
+      aria-pressed={isFlipped}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleInteraction(e as any);
+        }
       }}
     >
       <div className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}>
