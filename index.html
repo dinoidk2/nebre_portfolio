@@ -7,12 +7,31 @@
     <title>Oceana Viktoria Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles to ensure profile image is centered */
+        .profile-image-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        .profile-image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        @media (max-width: 640px) {
+            .comic-title {
+                padding-top: 1.5rem; /* Create space for navbar */
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="root">
         <!-- Navigation -->
-        <nav id="desktop-nav" class="fixed top-0 left-0 w-full z-40 px-8 py-4 flex justify-center transition-all duration-300 bg-white/80 backdrop-blur-md shadow-lg">
-            <div class="flex space-x-8">
+        <nav id="desktop-nav" class="fixed top-0 left-0 w-full z-40 px-6 py-4 flex justify-center transition-all duration-300 bg-white/80 backdrop-blur-md shadow-lg">
+            <div class="flex space-x-6">
                 <a href="index.html" class="nav-link bg-spiderverse-purple text-white">Home</a>
                 <a href="profile.html" class="nav-link hover:text-spiderverse-purple">Profile</a>
                 <a href="hobbies.html" class="nav-link hover:text-spiderverse-purple">Hobbies</a>
@@ -54,7 +73,7 @@
                 <div class="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
                 
                 <!-- Main Content -->
-                <div class="z-10 mt-20 md:mt-0">
+                <div class="z-10 mt-28 md:mt-16 px-4 w-full">
                     <h1 class="comic-title text-spiderverse-purple mb-2">
                         <div id="name-container" class="inline-flex flex-wrap justify-center">
                             <!-- Letters will be added by JavaScript -->
@@ -64,19 +83,21 @@
                     <h2 class="comic-subtitle text-spiderverse-blue mb-6">Digital Artist · Web Developer · Student</h2>
                     
                     <!-- Profile Image with Comic Style Border -->
-                    <div class="relative mb-8 inline-block">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
-                        <img 
-                            src="img1.jpg" 
-                            alt="Oceana Viktoria" 
-                            class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
-                            style="object-position: center 35%" 
-                        />
-                        <div class="absolute -top-6 -right-6 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 transform rotate-12">
-                            <span class="text-xl font-bold">!</span>
-                        </div>
-                        <div class="absolute -bottom-2 -left-6 w-16 h-16 bg-spiderverse-pink comic-border p-2 rounded-full z-20 transform -rotate-6">
-                            <span class="text-xl font-bold">:)</span>
+                    <div class="profile-image-container mb-8">
+                        <div class="profile-image-wrapper">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-monet-purple via-monet-blue to-monet-pink rounded-full blur-lg animate-pulse-light transform scale-105"></div>
+                            <img 
+                                src="img1.jpg" 
+                                alt="Oceana Viktoria" 
+                                class="w-64 h-64 sm:w-72 sm:h-72 object-cover rounded-full comic-border relative z-10"
+                                style="object-position: center 35%" 
+                            />
+                            <div class="absolute -top-6 -right-6 w-12 h-12 bg-spiderverse-yellow comic-border p-2 rounded-full z-20 transform rotate-12">
+                                <span class="text-xl font-bold">!</span>
+                            </div>
+                            <div class="absolute -bottom-2 -left-6 w-16 h-16 bg-spiderverse-pink comic-border p-2 rounded-full z-20 transform -rotate-6">
+                                <span class="text-xl font-bold">:)</span>
+                            </div>
                         </div>
                     </div>
                     

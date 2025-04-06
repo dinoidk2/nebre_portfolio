@@ -20,6 +20,7 @@ const InteractiveCard: React.FC<InteractiveCardProps> = ({ title, icon, children
   // Handle click event for both desktop and mobile
   const handleInteraction = (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault(); // Prevent default behavior
+    e.stopPropagation(); // Stop event bubbling
     setIsFlipped(!isFlipped);
   };
 
@@ -27,6 +28,10 @@ const InteractiveCard: React.FC<InteractiveCardProps> = ({ title, icon, children
     <div 
       className="relative w-full h-32 sm:h-40 cursor-pointer perspective-1000"
       onClick={handleInteraction}
+      onTouchStart={(e) => {
+        // Prevent scroll on touch
+        e.stopPropagation();
+      }}
       onTouchEnd={handleInteraction}
       role="button"
       tabIndex={0}

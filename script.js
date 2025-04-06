@@ -191,9 +191,24 @@ function initializeInteractiveCards() {
   const cards = document.querySelectorAll('.interactive-card');
   
   cards.forEach(card => {
-    card.addEventListener('click', function() {
+    // For click events
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       this.classList.toggle('flipped');
     });
+    
+    // For touch events on mobile
+    card.addEventListener('touchstart', function(e) {
+      // Prevent scrolling when touching the card
+      e.preventDefault();
+    }, { passive: false });
+    
+    card.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.classList.toggle('flipped');
+    }, { passive: false });
   });
 }
 

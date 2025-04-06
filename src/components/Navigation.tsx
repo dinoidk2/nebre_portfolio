@@ -41,7 +41,7 @@ const Navigation: React.FC = () => {
         }`}
       >
         <div className="max-w-screen-xl w-full flex justify-center">
-          <div className="flex space-x-6 md:space-x-8 overflow-visible">
+          <div className="flex space-x-4 md:space-x-8 overflow-visible">
             {links.map((link) => {
               const isActive = location.pathname === link.path;
               const activeBg = (() => {
@@ -91,7 +91,7 @@ const Navigation: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="nav-link text-white text-2xl my-3 hover:scale-125 transition-all duration-300"
+                className="nav-link text-white text-xl my-3 hover:scale-125 transition-all duration-300"
               >
                 {link.name}
               </Link>
