@@ -63,7 +63,7 @@ const Contact: React.FC = () => {
         <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className={`transition-all duration-500 delay-100 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="impressionist-card mb-6 text-left h-full">
+            <div className="impressionist-card mb-6 text-left h-full overflow-x-hidden">
               <h2 className="comic-subtitle text-spiderverse-purple mb-6">Contact Information</h2>
               
               <div className="space-y-6">
@@ -73,15 +73,15 @@ const Contact: React.FC = () => {
                     onClick={() => copyToClipboard("oceanaviktorial@gmail.com")}
                   >
                     <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-spiderverse-blue flex items-center justify-center text-white mr-3">
+                      <div className="min-w-10 w-10 h-10 rounded-full bg-spiderverse-blue flex items-center justify-center text-white mr-3">
                         @
                       </div>
-                      <div>
+                      <div className="overflow-hidden">
                         <h3 className="font-semibold">Email</h3>
-                        <p>oceanaviktorial@gmail.com</p>
+                        <p className="text-sm truncate">oceanaviktorial@gmail.com</p>
                       </div>
                     </div>
-                    <span className="text-sm font-medium text-spiderverse-purple">
+                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-1">
                       {copied ? 'Copied!' : 'Click to copy'}
                     </span>
                   </div>
@@ -93,15 +93,15 @@ const Contact: React.FC = () => {
                     onClick={() => copyToClipboard("@oceanaviktoria.nebre")}
                   >
                     <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-spiderverse-pink flex items-center justify-center text-white mr-3">
+                      <div className="min-w-10 w-10 h-10 rounded-full bg-spiderverse-pink flex items-center justify-center text-white mr-3">
                         #
                       </div>
-                      <div>
+                      <div className="overflow-hidden">
                         <h3 className="font-semibold">Social</h3>
-                        <p>@oceanaviktoria.nebre</p>
+                        <p className="text-sm truncate">@oceanaviktoria.nebre</p>
                       </div>
                     </div>
-                    <span className="text-sm font-medium text-spiderverse-purple">
+                    <span className="text-xs font-medium text-spiderverse-purple whitespace-nowrap ml-1">
                       {copied ? 'Copied!' : 'Click to copy'}
                     </span>
                   </div>
