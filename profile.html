@@ -42,7 +42,21 @@
             background: linear-gradient(to bottom, #F97316 0%, #fde047 50%, #F97316 100%);
             box-shadow: 0 0 8px rgba(249, 115, 22, 0.7);
         }
-        
+
+        .modal-backdrop {
+            display: none; /* Hidden by default */
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 50;
+            justify-content: center;
+            align-items: center;
+        }
+    
+        .modal-backdrop.active {
+            display: flex; /* Only visible when 'active' class is added */
+        }
+
         /* Additional styles for card flip animation */
         .perspective-1000 {
             perspective: 1000px;
@@ -602,18 +616,27 @@
             });
         });
         
+    <script>
         // Modal functions
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-        
-        // Close modals when clicking outside
+
+        // Open modal when clicking on an about-me card
+        document.querySelectorAll('.about-me-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const modalId = this.getAttribute('data-modal');
+                openModal(modalId);
+            });
+        });
+
+        // Close modals when clicking outside the modal content
         document.querySelectorAll('.modal-backdrop').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
