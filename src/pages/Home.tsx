@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const nameRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(false); // Changed to false to prevent loading screen
+  const [isLoading, setIsLoading] = useState(false);
   
   useEffect(() => {
     if (!nameRef.current) return;

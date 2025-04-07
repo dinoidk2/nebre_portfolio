@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,106 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Loading portal styles */
-        .loading-portal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        }
-
-        .loading-portal.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .portal-ring {
-            position: absolute;
-            border-radius: 50%;
-            animation: portal-rotate 3s linear infinite;
-            border: 4px solid transparent;
-        }
-
-        .portal-ring:nth-child(1) {
-            border-top: 4px solid #D946EF; /* spiderverse-pink */
-            animation-delay: -0.5s;
-            width: 100px;
-            height: 100px;
-        }
-
-        .portal-ring:nth-child(2) {
-            border-right: 4px solid #F97316; /* vangogh-orange */
-            animation-delay: -1s;
-            width: 140px;
-            height: 140px;
-        }
-
-        .portal-ring:nth-child(3) {
-            border-bottom: 4px solid #8B5CF6; /* spiderverse-purple */
-            animation-delay: -1.5s;
-            width: 180px;
-            height: 180px;
-        }
-
-        .portal-ring:nth-child(4) {
-            border-left: 4px solid #0EA5E9; /* spiderverse-blue */
-            animation-delay: -2s;
-            width: 220px;
-            height: 220px;
-        }
-
-        .portal-ring:nth-child(5) {
-            border-top: 4px solid #D946EF; /* spiderverse-pink */
-            border-bottom: 4px solid #8B5CF6; /* spiderverse-purple */
-            animation-delay: -2.5s;
-            width: 260px;
-            height: 260px;
-        }
-
-        .portal-ring:nth-child(6) {
-            border-left: 4px solid #0EA5E9; /* spiderverse-blue */
-            border-right: 4px solid #F97316; /* vangogh-orange */
-            animation-delay: -3s;
-            width: 300px;
-            height: 300px;
-        }
-
-        .portal-center-glow {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, rgba(217, 70, 239, 1) 0%, rgba(139, 92, 246, 0.8) 50%, rgba(14, 165, 233, 0) 100%);
-            border-radius: 50%;
-            animation: portal-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes portal-rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes portal-pulse {
-            0%, 100% {
-                transform: scale(0.8);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
-        }
-
         /* Enhanced border styles */
         .impressionist-card.border-l-4.border-spiderverse-pink {
             position: relative;
@@ -166,19 +67,6 @@
     </style>
 </head>
 <body>
-    <!-- Loading Portal -->
-    <div id="loading-portal" class="loading-portal">
-        <div class="portal-container">
-            <div class="portal-ring"></div>
-            <div class="portal-ring"></div>
-            <div class="portal-ring"></div>
-            <div class="portal-ring"></div>
-            <div class="portal-ring"></div>
-            <div class="portal-ring"></div>
-            <div class="portal-center-glow"></div>
-        </div>
-    </div>
-    
     <div id="root">
         <!-- Navigation -->
         <nav id="desktop-nav" class="fixed top-0 left-0 w-full z-40 px-6 py-4 flex justify-center transition-all duration-300 bg-white/80 backdrop-blur-md shadow-lg">
@@ -282,56 +170,11 @@
         </div>
     </div>
     
-    <!-- Interactive Modals -->
-    <div class="modal-backdrop" id="mbti-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('mbti-modal')">×</button>
-            <h3 class="font-bold text-xl mb-4">MBTI: INFP</h3>
-            <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
-            <p class="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
-        </div>
-    </div>
-    
-    <div class="modal-backdrop" id="game-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('game-modal')">×</button>
-            <h3 class="font-bold text-xl mb-4">Favorite Game: OMORI</h3>
-            <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
-            <p class="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
-        </div>
-    </div>
-    
-    <div class="modal-backdrop" id="values-modal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal('values-modal')">×</button>
-            <h3 class="font-bold text-xl mb-4">Things I Value</h3>
-            <ul class="list-disc list-inside">
-                <li><span class="font-bold">Authenticity</span> - Being true to oneself</li>
-                <li><span class="font-bold">Creativity</span> - Finding new perspectives</li>
-                <li><span class="font-bold">Personal Growth</span> - Continuous learning</li>
-                <li><span class="font-bold">Empathy</span> - Understanding others</li>
-            </ul>
-        </div>
-    </div>
-    
     <!-- Required Lovable Script -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script src="script.js"></script>
     
     <script>
-        // Initialization for loading portal
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                const loadingPortal = document.getElementById('loading-portal');
-                loadingPortal.classList.add('hidden');
-                
-                // Remove loading portal after animation completes
-                setTimeout(function() {
-                    loadingPortal.style.display = 'none';
-                }, 500);
-            }, 2000);
-        });
-        
         // Modal handling
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
@@ -342,28 +185,6 @@
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-        
-        // Add event listeners to the about me cards
-        document.addEventListener('DOMContentLoaded', function() {
-            // Setup any interactive elements here if needed
-            const mbtiCard = document.querySelector('[data-modal="mbti-modal"]');
-            const gameCard = document.querySelector('[data-modal="game-modal"]');
-            const valuesCard = document.querySelector('[data-modal="values-modal"]');
-            
-            if (mbtiCard) mbtiCard.addEventListener('click', () => openModal('mbti-modal'));
-            if (gameCard) gameCard.addEventListener('click', () => openModal('game-modal'));
-            if (valuesCard) valuesCard.addEventListener('click', () => openModal('values-modal'));
-            
-            // Close modals when clicking outside
-            document.querySelectorAll('.modal-backdrop').forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            });
-        });
     </script>
 </body>
 </html>
