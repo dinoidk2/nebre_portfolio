@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const nameRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); // Changed to false to prevent loading screen
   
   useEffect(() => {
     if (!nameRef.current) return;
@@ -20,30 +20,7 @@ const Home: React.FC = () => {
     };
     
     addRandomRotation();
-    
-    // Simulate loading time
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    
-    return () => clearTimeout(timer);
   }, []);
-  
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black">
-        <div className="relative">
-          <div className="portal-ring" style={{ '--i': '0' } as React.CSSProperties}></div>
-          <div className="portal-ring" style={{ '--i': '1' } as React.CSSProperties}></div>
-          <div className="portal-ring" style={{ '--i': '2' } as React.CSSProperties}></div>
-          <div className="portal-ring" style={{ '--i': '3' } as React.CSSProperties}></div>
-          <div className="portal-ring" style={{ '--i': '4' } as React.CSSProperties}></div>
-          <div className="portal-ring" style={{ '--i': '5' } as React.CSSProperties}></div>
-          <div className="portal-center-glow"></div>
-        </div>
-      </div>
-    );
-  }
   
   return (
     <div className="page-container bg-gradient-to-br from-monet-blue/30 via-vangogh-yellow/30 to-monet-purple/30">

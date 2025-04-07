@@ -12,9 +12,5 @@ if (!document.getElementById("root")) {
   document.body.appendChild(rootDiv);
 }
 
-// Redirect to HTML version for non-React environments
-if (window.location.pathname === "/" && !window.location.href.includes("localhost")) {
-  window.location.href = "index.html";
-} else {
-  createRoot(document.getElementById("root")!).render(<App />);
-}
+// Create the React root and render the app
+createRoot(document.getElementById("root")!).render(<App />);
