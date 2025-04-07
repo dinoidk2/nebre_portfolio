@@ -44,17 +44,37 @@
         }
 
         .modal-backdrop {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             inset: 0;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             z-index: 50;
             justify-content: center;
             align-items: center;
+            padding: 1rem;
         }
-    
+
         .modal-backdrop.active {
-            display: flex; /* Only visible when 'active' class is added */
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.75rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
         /* Additional styles for card flip animation */
