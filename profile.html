@@ -72,6 +72,85 @@
                 max-width: 100%;
             }
         }
+        
+        /* Skills section styles */
+        .skill-header {
+            cursor: pointer;
+            padding: 8px 0;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .skill-content {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        
+        .skill-content.open {
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .skill-toggle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-toggle.open {
+            transform: rotate(180deg);
+        }
+        
+        /* Skills bar styling */
+        .skill-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 9999px;
+            height: 10px;
+            margin-bottom: 4px;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 9999px;
+        }
+        
+        .skill-digital-art {
+            background-color: #60a5fa;
+            width: 90%;
+        }
+        
+        .skill-web-dev {
+            background-color: #9b87f5;
+            width: 80%;
+        }
+        
+        .skill-leadership {
+            background-color: #ec4899;
+            width: 85%;
+        }
+        
+        /* Interest tags */
+        .interest-tag {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            display: inline-block;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .interest-tag:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -260,29 +339,220 @@
                             </div>
                         </div>
                         
-                        <!-- More sections here if needed -->
+                        <!-- Skills Section -->
+                        <div class="impressionist-card border-l-4 border-spiderverse-blue mb-4 hover:-rotate-1">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-spiderverse-blue flex items-center justify-center text-white mr-3">
+                                    ✦
+                                </div>
+                                <h3 class="font-bold text-xl">Skills</h3>
+                            </div>
+                            
+                            <div class="mt-2 space-y-2">
+                                <!-- Skill bars -->
+                                <div class="mb-3">
+                                    <div class="skill-bar">
+                                        <div class="skill-progress skill-digital-art"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs">
+                                        <span>Digital Art</span>
+                                        <span>90%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="skill-bar">
+                                        <div class="skill-progress skill-web-dev"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs">
+                                        <span>Web Development</span>
+                                        <span>80%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <div class="skill-bar">
+                                        <div class="skill-progress skill-leadership"></div>
+                                    </div>
+                                    <div class="flex justify-between text-xs">
+                                        <span>Leadership</span>
+                                        <span>85%</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Expandable skill details -->
+                                <div class="mt-6">
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="digital-art">
+                                            <span>Digital Art</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-digital-art" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Proficient in drawing and painting, with experience in character design, illustration, and digital storytelling using tools like Clip Studio Paint, Photoshop, and Procreate.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="web-dev">
+                                            <span>Web Development</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-web-dev" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Knowledgeable in front-end web development, including HTML, CSS, JavaScript, and React. Able to create responsive, user-friendly websites with a focus on accessibility and smooth user experience.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="uiux">
+                                            <span>UI/UX Design</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-uiux" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Understanding of design principles that prioritize the user experience, with skills in wireframing, prototyping, and basic user research.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="leadership">
+                                            <span>Project Leadership</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-leadership" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Experience leading student initiatives, advocating for academic support, organizing events, and working with a team to achieve goals. Known for being detail-oriented, empathetic, and communicative.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="communication">
+                                            <span>Communication</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-communication" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Strong written and verbal communication skills, especially in creating clear and engaging content. Skilled at explaining complex ideas in a simple, understandable way.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="writing">
+                                            <span>Creative Writing & Storytelling</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-writing" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Ability to craft engaging narratives, whether through visual media or written content. Passion for exploring character-driven, emotionally rich stories in manga, literature, and other media.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="problem-solving">
+                                            <span>Problem Solving</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-problem-solving" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="skill-header" data-skill-id="time-management">
+                                            <span>Time Management</span>
+                                            <span class="skill-toggle">+</span>
+                                        </div>
+                                        <div id="skill-content-time-management" class="skill-content">
+                                            <p class="mt-1 text-sm text-gray-700">
+                                                Able to balance multiple responsibilities effectively, from leadership roles to creative projects, ensuring tasks are completed on time with attention to detail.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Interests Section -->
+                        <div class="impressionist-card border-l-4 border-spiderverse-yellow mb-4 hover:-rotate-1">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-spiderverse-yellow flex items-center justify-center text-white mr-3">
+                                    ★
+                                </div>
+                                <h3 class="font-bold text-xl">Interests</h3>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="interest-tag">Art</span>
+                                <span class="interest-tag">Web Design</span>
+                                <span class="interest-tag">Reading</span>
+                                <span class="interest-tag">Anime</span>
+                                <span class="interest-tag">Leadership</span>
+                                <span class="interest-tag">Creative Solutions</span>
+                                <span class="interest-tag">Student Advocacy</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script src="script.js"></script>
     <script>
-        // Add special handler for interactive cards on touch devices
+        // Initialize skill toggles
         document.addEventListener('DOMContentLoaded', function() {
+            // Handle Interactive Cards
             const cards = document.querySelectorAll('.interactive-card');
             
             cards.forEach(card => {
+                // For click events
                 card.addEventListener('click', function(e) {
                     e.preventDefault();
                     this.classList.toggle('flipped');
                 });
                 
+                // For touch events on mobile
+                card.addEventListener('touchstart', function(e) {
+                    // Prevent scrolling when touching the card
+                    e.preventDefault();
+                }, { passive: false });
+                
                 card.addEventListener('touchend', function(e) {
                     e.preventDefault();
+                    e.stopPropagation();
                     this.classList.toggle('flipped');
+                }, { passive: false });
+            });
+            
+            // Handle Skill Toggles
+            const skillHeaders = document.querySelectorAll('.skill-header');
+            
+            skillHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const skillId = this.getAttribute('data-skill-id');
+                    const content = document.getElementById(`skill-content-${skillId}`);
+                    const toggle = this.querySelector('.skill-toggle');
+                    
+                    // Toggle the content
+                    content.classList.toggle('open');
+                    toggle.classList.toggle('open');
+                    
+                    // Set explicit height for animation
+                    if (content.classList.contains('open')) {
+                        content.style.height = content.scrollHeight + 'px';
+                        toggle.textContent = '−'; // Minus sign
+                    } else {
+                        content.style.height = '0';
+                        toggle.textContent = '+'; // Plus sign
+                    }
                 });
             });
         });
