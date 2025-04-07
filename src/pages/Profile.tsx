@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; icon: string; color: string }> = ({ title, content, icon, color }) => {
   return (
@@ -12,11 +13,22 @@ const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; ico
         </div>
         <h3 className="font-bold text-xl">{title}</h3>
       </div>
-      {typeof content === 'string' ? (
-        <p className="text-left">{content}</p>
-      ) : (
-        content
-      )}
+      <div className="relative">
+        {/* Add colored gradient border matching the Spiderverse style */}
+        <div className="absolute inset-y-0 left-0 w-1">
+          <div className={`absolute inset-0 ${
+            color.includes('pink') ? 'bg-gradient-to-b from-spiderverse-pink via-pink-400 to-spiderverse-purple' : 
+            color.includes('yellow') ? 'bg-gradient-to-b from-spiderverse-yellow via-amber-400 to-vangogh-orange' :
+            'bg-gradient-to-b from-spiderverse-blue via-blue-400 to-spiderverse-purple'
+          }`}></div>
+        </div>
+        
+        {typeof content === 'string' ? (
+          <p className="text-left">{content}</p>
+        ) : (
+          content
+        )}
+      </div>
     </div>
   );
 };
@@ -41,6 +53,18 @@ const Profile: React.FC = () => {
   
   useEffect(() => {
     setIsLoaded(true);
+    
+    // Add JS for skill toggles
+    const handleSkillToggle = (skillName: string) => {
+      setExpandedSkill(prevSkill => prevSkill === skillName ? null : skillName);
+    };
+
+    // Expose the toggle function to window for direct JS access
+    (window as any).handleSkillToggle = handleSkillToggle;
+    
+    return () => {
+      delete (window as any).handleSkillToggle;
+    };
   }, []);
 
   const skillsInfo = {
@@ -111,66 +135,79 @@ const Profile: React.FC = () => {
               }
             />
 
-            {/* Interactive Cards Section - Using Popovers for better interaction */}
+            {/* Interactive Cards Section - Changed to Dialog/Popover for popups */}
             <InfoCard 
               title="More About Me" 
               icon="💡" 
               color="border-spiderverse-blue"
               content={
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
-                  <Popover>
-                    <PopoverTrigger asChild>
+                  <Dialog>
+                    <DialogTrigger asChild>
                       <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">🧠</span>
                         <h3 className="font-bold text-lg">MBTI</h3>
                         <div className="mt-2 text-spiderverse-purple">
-                          <span className="text-xs">Click to reveal</span>
+                          <span className="text-xs">Click to open</span>
                         </div>
                       </div>
-                    </PopoverTrigger>
-                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
-                      <h4 className="font-bold mb-1">INFP</h4>
-                      <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
-                      <p className="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
-                    </PopoverContent>
-                  </Popover>
+                    </DialogTrigger>
+                    <DialogContent className="bg-white/95 backdrop-blur-md">
+                      <DialogHeader>
+                        <DialogTitle>INFP</DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-2">
+                        <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
+                        <p className="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   
-                  <Popover>
-                    <PopoverTrigger asChild>
+                  <Dialog>
+                    <DialogTrigger asChild>
                       <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">🎮</span>
                         <h3 className="font-bold text-lg">Favorite Game</h3>
                         <div className="mt-2 text-spiderverse-purple">
-                          <span className="text-xs">Click to reveal</span>
+                          <span className="text-xs">Click to open</span>
                         </div>
                       </div>
-                    </PopoverTrigger>
-                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
-                      <h4 className="font-bold mb-1">OMORI</h4>
-                      <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
-                      <p className="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
-                    </PopoverContent>
-                  </Popover>
+                    </DialogTrigger>
+                    <DialogContent className="bg-white/95 backdrop-blur-md">
+                      <DialogHeader>
+                        <DialogTitle>OMORI</DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-2">
+                        <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
+                        <p className="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   
-                  <Popover>
-                    <PopoverTrigger asChild>
+                  <Dialog>
+                    <DialogTrigger asChild>
                       <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">✨</span>
                         <h3 className="font-bold text-lg">Things I Value</h3>
                         <div className="mt-2 text-spiderverse-purple">
-                          <span className="text-xs">Click to reveal</span>
+                          <span className="text-xs">Click to open</span>
                         </div>
                       </div>
-                    </PopoverTrigger>
-                    <PopoverContent className="bg-white/90 backdrop-blur-md p-4 w-72 animate-in zoom-in-105 duration-300">
-                      <ul className="list-disc list-inside">
-                        <li><span className="font-bold">Authenticity</span> - Being true to oneself</li>
-                        <li><span className="font-bold">Creativity</span> - Finding new perspectives</li>
-                        <li><span className="font-bold">Personal Growth</span> - Continuous learning</li>
-                        <li><span className="font-bold">Empathy</span> - Understanding others</li>
-                      </ul>
-                    </PopoverContent>
-                  </Popover>
+                    </DialogTrigger>
+                    <DialogContent className="bg-white/95 backdrop-blur-md">
+                      <DialogHeader>
+                        <DialogTitle>Things I Value</DialogTitle>
+                      </DialogHeader>
+                      <div className="mt-2">
+                        <ul className="list-disc list-inside">
+                          <li><span className="font-bold">Authenticity</span> - Being true to oneself</li>
+                          <li><span className="font-bold">Creativity</span> - Finding new perspectives</li>
+                          <li><span className="font-bold">Personal Growth</span> - Continuous learning</li>
+                          <li><span className="font-bold">Empathy</span> - Understanding others</li>
+                        </ul>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               }
             />
@@ -217,6 +254,7 @@ const Profile: React.FC = () => {
                           <button
                             onClick={() => setExpandedSkill(expandedSkill === skill ? null : skill)}
                             className="font-bold text-left w-full flex justify-between items-center py-2 hover:bg-white/30 px-2 rounded-md transition-all duration-200"
+                            data-skill-name={skill}
                           >
                             <span>{skill}</span>
                             <span className="skill-toggle-icon text-lg transition-transform duration-300" style={{
@@ -229,10 +267,12 @@ const Profile: React.FC = () => {
                             className="skill-description overflow-hidden transition-all duration-300" 
                             style={{ 
                               maxHeight: expandedSkill === skill ? '500px' : '0', 
-                              opacity: expandedSkill === skill ? 1 : 0 
+                              opacity: expandedSkill === skill ? 1 : 0,
+                              padding: expandedSkill === skill ? '8px' : '0',
+                              marginTop: expandedSkill === skill ? '8px' : '0'
                             }}
                           >
-                            <p className="mt-1 text-sm text-gray-700 p-2 bg-white/20 rounded-md">{description}</p>
+                            <p className="text-sm text-gray-700 p-2 bg-white/20 rounded-md">{description}</p>
                           </div>
                         </div>
                       ))}

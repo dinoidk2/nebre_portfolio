@@ -1,8 +1,5 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize loading portal
-  initializeLoadingPortal();
-  
   // Initialize mobile menu
   initializeMobileMenu();
   
@@ -16,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize skill toggles
   initializeSkillToggles();
-  
+
   // Initialize hobby modals
   initializeHobbyModals();
 
@@ -26,34 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Ensure images load correctly
   fixImagePaths();
 });
-
-// Initialize loading portal
-function initializeLoadingPortal() {
-  setTimeout(function() {
-    const loadingPortal = document.getElementById('loading-portal');
-    if (loadingPortal) {
-      loadingPortal.classList.add('hidden');
-      
-      // Remove loading portal after animation completes
-      setTimeout(function() {
-        loadingPortal.style.display = 'none';
-      }, 500);
-    }
-  }, 2000);
-}
-
-// Fix image paths
-function fixImagePaths() {
-  const images = document.querySelectorAll('img');
-  images.forEach(img => {
-    if (img.src.includes('lovable-uploads') && !img.src.includes('http')) {
-      // If it's a relative path, make sure it's correct
-      if (img.src.startsWith('/')) {
-        img.src = img.src.substring(1); // Remove leading slash if it exists
-      }
-    }
-  });
-}
 
 // Mobile Menu
 function initializeMobileMenu() {
@@ -75,6 +44,19 @@ function initializeMobileMenu() {
       menuButton.classList.remove('rotate-90');
       mobileMenu.classList.remove('opacity-95');
       mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+    }
+  });
+}
+
+// Fix image paths
+function fixImagePaths() {
+  const images = document.querySelectorAll('img');
+  images.forEach(img => {
+    if (img.src.includes('lovable-uploads') && !img.src.includes('http')) {
+      // If it's a relative path, make sure it's correct
+      if (img.src.startsWith('/')) {
+        img.src = img.src.substring(1); // Remove leading slash if it exists
+      }
     }
   });
 }
@@ -180,62 +162,70 @@ function addRandomRotation() {
 
 // Initialize skill toggles
 function initializeSkillToggles() {
-  const skillHeaders = document.querySelectorAll('.skill-header');
+  // First try React-managed toggles
+  if (window.handleSkillToggle) {
+    const skillButtons = document.querySelectorAll('.skill-item button');
+    skillButtons.forEach(button => {
+      const skillName = button.getAttribute('data-skill-name');
+      if (skillName) {
+        button.addEventListener('click', () => {
+          window.handleSkillToggle(skillName);
+        });
+      }
+    });
+    return;
+  }
+
+  // Fallback to vanilla JS implementation
+  const skillHeaders = document.querySelectorAll('.skill-item button');
   
   skillHeaders.forEach(header => {
     header.addEventListener('click', function() {
-      const skillId = this.getAttribute('data-skill-id');
-      const content = document.getElementById(`skill-content-${skillId}`);
-      const toggle = this.querySelector('.skill-toggle');
+      const skillItem = this.closest('.skill-item');
+      const description = skillItem.querySelector('.skill-description');
+      const toggle = this.querySelector('.skill-toggle-icon');
       
-      // Toggle the content
-      content.classList.toggle('open');
-      toggle.classList.toggle('open');
+      // Get all other skill items
+      const allSkillItems = document.querySelectorAll('.skill-item');
       
-      // Update the toggle icon
-      if (content.classList.contains('open')) {
-        toggle.textContent = '×'; // Multiplication sign as close button
-      } else {
-        toggle.textContent = '+'; // Plus sign as open button
+      // Close all other open descriptions
+      allSkillItems.forEach(item => {
+        if (item !== skillItem) {
+          const otherDesc = item.querySelector('.skill-description');
+          const otherToggle = item.querySelector('.skill-toggle-icon');
+          
+          if (otherDesc && otherToggle) {
+            otherDesc.style.maxHeight = '0';
+            otherDesc.style.opacity = '0';
+            otherDesc.style.padding = '0';
+            otherDesc.style.marginTop = '0';
+            otherToggle.textContent = '+';
+            otherToggle.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+      
+      // Toggle the clicked description
+      if (description && toggle) {
+        const isOpen = description.style.maxHeight !== '0px' && description.style.maxHeight !== '';
+        
+        if (isOpen) {
+          description.style.maxHeight = '0';
+          description.style.opacity = '0';
+          description.style.padding = '0';
+          description.style.marginTop = '0';
+          toggle.textContent = '+';
+          toggle.style.transform = 'rotate(0deg)';
+        } else {
+          description.style.maxHeight = '500px';
+          description.style.opacity = '1';
+          description.style.padding = '8px';
+          description.style.marginTop = '8px';
+          toggle.textContent = '×';
+          toggle.style.transform = 'rotate(45deg)';
+        }
       }
     });
-  });
-}
-
-// Initialize interactive cards
-function initializeInteractiveCards() {
-  // For about-me cards with modals
-  const aboutMeCards = document.querySelectorAll('.about-me-card');
-  
-  aboutMeCards.forEach(card => {
-    card.addEventListener('click', function() {
-      const modalId = this.getAttribute('data-modal');
-      if (modalId) openModal(modalId);
-    });
-  });
-  
-  // For traditional flip cards
-  const flipCards = document.querySelectorAll('.interactive-card');
-  
-  flipCards.forEach(card => {
-    // For click events
-    card.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.classList.toggle('flipped');
-    });
-    
-    // For touch events on mobile
-    card.addEventListener('touchstart', function(e) {
-      // Prevent scrolling when touching the card
-      e.preventDefault();
-    }, { passive: false });
-    
-    card.addEventListener('touchend', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.classList.toggle('flipped');
-    }, { passive: false });
   });
 }
 
@@ -244,22 +234,9 @@ function initializeHobbyModals() {
   // Setup modal interactions for different pages
 }
 
-// Open modal
-function openModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (!modal) return;
-  
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-// Close modal
-function closeModal(modalId) {
-  const modal = document.getElementById(modalId);
-  if (!modal) return;
-  
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
+// Initialize interactive cards
+function initializeInteractiveCards() {
+  // No longer needed - all modals and interactive elements now use React components
 }
 
 // Copy to clipboard function
