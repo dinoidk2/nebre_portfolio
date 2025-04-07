@@ -1,5 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize loading portal
+  initializeLoadingPortal();
+  
   // Initialize mobile menu
   initializeMobileMenu();
   
@@ -23,6 +26,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Ensure images load correctly
   fixImagePaths();
 });
+
+// Initialize loading portal
+function initializeLoadingPortal() {
+  setTimeout(function() {
+    const loadingPortal = document.getElementById('loading-portal');
+    if (loadingPortal) {
+      loadingPortal.classList.add('hidden');
+      
+      // Remove loading portal after animation completes
+      setTimeout(function() {
+        loadingPortal.style.display = 'none';
+      }, 500);
+    }
+  }, 2000);
+}
 
 // Fix image paths
 function fixImagePaths() {
@@ -174,13 +192,11 @@ function initializeSkillToggles() {
       content.classList.toggle('open');
       toggle.classList.toggle('open');
       
-      // Set explicit height for animation
+      // Update the toggle icon
       if (content.classList.contains('open')) {
-        content.style.height = content.scrollHeight + 'px';
-        toggle.textContent = '−'; // Minus sign
+        toggle.textContent = '×'; // Multiplication sign as close button
       } else {
-        content.style.height = '0';
-        toggle.textContent = '+'; // Plus sign
+        toggle.textContent = '+'; // Plus sign as open button
       }
     });
   });
@@ -188,9 +204,20 @@ function initializeSkillToggles() {
 
 // Initialize interactive cards
 function initializeInteractiveCards() {
-  const cards = document.querySelectorAll('.interactive-card');
+  // For about-me cards with modals
+  const aboutMeCards = document.querySelectorAll('.about-me-card');
   
-  cards.forEach(card => {
+  aboutMeCards.forEach(card => {
+    card.addEventListener('click', function() {
+      const modalId = this.getAttribute('data-modal');
+      if (modalId) openModal(modalId);
+    });
+  });
+  
+  // For traditional flip cards
+  const flipCards = document.querySelectorAll('.interactive-card');
+  
+  flipCards.forEach(card => {
     // For click events
     card.addEventListener('click', function(e) {
       e.preventDefault();
@@ -214,39 +241,24 @@ function initializeInteractiveCards() {
 
 // Initialize hobby modals
 function initializeHobbyModals() {
-  // The event handlers are set up inline in the HTML
+  // Setup modal interactions for different pages
 }
 
-// Open hobby modal
-function openHobbyModal(hobbyId) {
-  const modalContainer = document.getElementById('modal-container');
-  const hobbyModal = document.getElementById(`${hobbyId}-modal`);
+// Open modal
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
   
-  if (!modalContainer || !hobbyModal) return;
-  
-  // Hide all modals first
-  document.querySelectorAll('.hobby-modal').forEach(modal => {
-    modal.classList.add('hidden');
-  });
-  
-  // Show the modal container and the selected hobby modal
-  modalContainer.classList.remove('hidden');
-  hobbyModal.classList.remove('hidden');
-  
-  // Prevent body scrolling
+  modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 
-// Close hobby modal
-function closeHobbyModal() {
-  const modalContainer = document.getElementById('modal-container');
+// Close modal
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (!modal) return;
   
-  if (!modalContainer) return;
-  
-  // Hide the modal container
-  modalContainer.classList.add('hidden');
-  
-  // Allow body scrolling again
+  modal.classList.remove('active');
   document.body.style.overflow = '';
 }
 

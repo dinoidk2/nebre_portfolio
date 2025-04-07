@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import InteractiveCard from '../components/InteractiveCard';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 
@@ -112,7 +111,7 @@ const Profile: React.FC = () => {
               }
             />
 
-            {/* Interactive Cards Section - replaced with popover for better mobile experience */}
+            {/* Interactive Cards Section - Using Popovers for better interaction */}
             <InfoCard 
               title="More About Me" 
               icon="💡" 
@@ -121,7 +120,7 @@ const Profile: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
                   <Popover>
                     <PopoverTrigger asChild>
-                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">🧠</span>
                         <h3 className="font-bold text-lg">MBTI</h3>
                         <div className="mt-2 text-spiderverse-purple">
@@ -138,7 +137,7 @@ const Profile: React.FC = () => {
                   
                   <Popover>
                     <PopoverTrigger asChild>
-                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">🎮</span>
                         <h3 className="font-bold text-lg">Favorite Game</h3>
                         <div className="mt-2 text-spiderverse-purple">
@@ -155,7 +154,7 @@ const Profile: React.FC = () => {
                   
                   <Popover>
                     <PopoverTrigger asChild>
-                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="bg-white/80 backdrop-blur-sm rounded-lg p-4 flex flex-col justify-center items-center shadow-md hover:shadow-lg transition-shadow cursor-pointer hover:scale-105 transition-transform duration-200">
                         <span className="text-3xl mb-2">✨</span>
                         <h3 className="font-bold text-lg">Things I Value</h3>
                         <div className="mt-2 text-spiderverse-purple">
@@ -212,19 +211,29 @@ const Profile: React.FC = () => {
                     <SkillItem name="Web Development" percentage={80} color="bg-spiderverse-purple" />
                     <SkillItem name="Leadership" percentage={85} color="bg-spiderverse-pink" />
                     
-                    <div className="mt-6">
+                    <div className="mt-6 skill-details">
                       {Object.entries(skillsInfo).map(([skill, description], index) => (
-                        <div key={index} className="mb-3">
+                        <div key={index} className="mb-3 skill-item">
                           <button
                             onClick={() => setExpandedSkill(expandedSkill === skill ? null : skill)}
-                            className="font-bold text-left w-full flex justify-between items-center"
+                            className="font-bold text-left w-full flex justify-between items-center py-2 hover:bg-white/30 px-2 rounded-md transition-all duration-200"
                           >
                             <span>{skill}</span>
-                            <span>{expandedSkill === skill ? '−' : '+'}</span>
+                            <span className="skill-toggle-icon text-lg transition-transform duration-300" style={{
+                              transform: expandedSkill === skill ? 'rotate(45deg)' : 'rotate(0deg)'
+                            }}>
+                              {expandedSkill === skill ? '×' : '+'}
+                            </span>
                           </button>
-                          {expandedSkill === skill && (
-                            <p className="mt-1 text-sm text-gray-700">{description}</p>
-                          )}
+                          <div 
+                            className="skill-description overflow-hidden transition-all duration-300" 
+                            style={{ 
+                              maxHeight: expandedSkill === skill ? '500px' : '0', 
+                              opacity: expandedSkill === skill ? 1 : 0 
+                            }}
+                          >
+                            <p className="mt-1 text-sm text-gray-700 p-2 bg-white/20 rounded-md">{description}</p>
+                          </div>
                         </div>
                       ))}
                     </div>

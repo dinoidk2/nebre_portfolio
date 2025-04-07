@@ -2,6 +2,7 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import './styles/portal.css'
 
 // Enable proper integration with Lovable
 // Add the root element to the document if it doesn't exist

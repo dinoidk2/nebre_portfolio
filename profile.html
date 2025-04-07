@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,141 @@
     <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Loading portal styles */
+        .loading-portal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        .loading-portal.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .portal-ring {
+            position: absolute;
+            border-radius: 50%;
+            animation: portal-rotate 3s linear infinite;
+            border: 4px solid transparent;
+        }
+
+        .portal-ring:nth-child(1) {
+            border-top: 4px solid #D946EF; /* spiderverse-pink */
+            animation-delay: -0.5s;
+            width: 100px;
+            height: 100px;
+        }
+
+        .portal-ring:nth-child(2) {
+            border-right: 4px solid #F97316; /* vangogh-orange */
+            animation-delay: -1s;
+            width: 140px;
+            height: 140px;
+        }
+
+        .portal-ring:nth-child(3) {
+            border-bottom: 4px solid #8B5CF6; /* spiderverse-purple */
+            animation-delay: -1.5s;
+            width: 180px;
+            height: 180px;
+        }
+
+        .portal-ring:nth-child(4) {
+            border-left: 4px solid #0EA5E9; /* spiderverse-blue */
+            animation-delay: -2s;
+            width: 220px;
+            height: 220px;
+        }
+
+        .portal-ring:nth-child(5) {
+            border-top: 4px solid #D946EF; /* spiderverse-pink */
+            border-bottom: 4px solid #8B5CF6; /* spiderverse-purple */
+            animation-delay: -2.5s;
+            width: 260px;
+            height: 260px;
+        }
+
+        .portal-ring:nth-child(6) {
+            border-left: 4px solid #0EA5E9; /* spiderverse-blue */
+            border-right: 4px solid #F97316; /* vangogh-orange */
+            animation-delay: -3s;
+            width: 300px;
+            height: 300px;
+        }
+
+        .portal-center-glow {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(217,70,239,1) 0%, rgba(139,92,246,0.8) 50%, rgba(14,165,233,0) 100%);
+            border-radius: 50%;
+            animation: portal-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes portal-rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes portal-pulse {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+        
+        /* Enhanced border styles */
+        .impressionist-card.border-l-4.border-spiderverse-pink {
+            position: relative;
+            box-shadow: 0 4px 10px rgba(217, 70, 239, 0.3);
+            overflow: hidden;
+        }
+
+        .impressionist-card.border-l-4.border-spiderverse-pink::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #D946EF 0%, #ec4899 50%, #D946EF 100%);
+            box-shadow: 0 0 8px rgba(217, 70, 239, 0.7);
+        }
+
+        .impressionist-card.border-l-4.border-spiderverse-yellow {
+            position: relative;
+            box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
+            overflow: hidden;
+        }
+
+        .impressionist-card.border-l-4.border-spiderverse-yellow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #F97316 0%, #fde047 50%, #F97316 100%);
+            box-shadow: 0 0 8px rgba(249, 115, 22, 0.7);
+        }
+        
         /* Additional styles for card flip animation */
         .perspective-1000 {
             perspective: 1000px;
@@ -76,35 +210,52 @@
         /* Skills section styles */
         .skill-header {
             cursor: pointer;
-            padding: 8px 0;
+            padding: 8px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .skill-header:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
         
         .skill-content {
-            height: 0;
+            max-height: 0;
             overflow: hidden;
-            transition: height 0.3s ease;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
         }
         
         .skill-content.open {
-            height: auto;
-            margin-bottom: 10px;
+            max-height: 300px; /* Adjust as needed */
+            opacity: 1;
+            margin: 8px 0;
+        }
+        
+        .skill-content-inner {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 4px;
         }
         
         .skill-toggle {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            text-align: center;
-            line-height: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
             transition: transform 0.3s ease;
+            font-size: 20px;
+            line-height: 1;
         }
         
         .skill-toggle.open {
-            transform: rotate(180deg);
+            transform: rotate(45deg);
         }
         
         /* Skills bar styling */
@@ -154,6 +305,19 @@
     </style>
 </head>
 <body>
+    <!-- Loading Portal -->
+    <div id="loading-portal" class="loading-portal">
+        <div class="portal-container">
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-center-glow"></div>
+        </div>
+    </div>
+    
     <div id="root">
         <!-- Navigation -->
         <nav id="desktop-nav" class="fixed top-0 left-0 w-full z-40 px-6 py-4 flex justify-center transition-all duration-300 bg-white/80 backdrop-blur-md shadow-lg">
@@ -264,51 +428,27 @@
                                 <h3 class="font-bold text-xl">More About Me</h3>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-3">
-                                <div class="interactive-card" ontouchstart="event.preventDefault()">
-                                    <div class="card-front">
-                                        <span class="text-3xl mb-2">🧠</span>
-                                        <h3 class="font-bold text-lg">MBTI</h3>
-                                        <div class="mt-2 text-spiderverse-purple">
-                                            <span class="text-xs">Click to reveal</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-back">
-                                        <h4 class="font-bold mb-1">INFP</h4>
-                                        <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
-                                        <p class="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
+                                <div class="about-me-card" data-modal="mbti-modal">
+                                    <span class="text-3xl mb-2">🧠</span>
+                                    <h3 class="font-bold text-lg">MBTI</h3>
+                                    <div class="mt-2 text-spiderverse-purple">
+                                        <span class="text-xs">Click to reveal</span>
                                     </div>
                                 </div>
                                 
-                                <div class="interactive-card" ontouchstart="event.preventDefault()">
-                                    <div class="card-front">
-                                        <span class="text-3xl mb-2">🎮</span>
-                                        <h3 class="font-bold text-lg">Favorite Game</h3>
-                                        <div class="mt-2 text-spiderverse-purple">
-                                            <span class="text-xs">Click to reveal</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-back">
-                                        <h4 class="font-bold mb-1">OMORI</h4>
-                                        <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
-                                        <p class="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
+                                <div class="about-me-card" data-modal="game-modal">
+                                    <span class="text-3xl mb-2">🎮</span>
+                                    <h3 class="font-bold text-lg">Favorite Game</h3>
+                                    <div class="mt-2 text-spiderverse-purple">
+                                        <span class="text-xs">Click to reveal</span>
                                     </div>
                                 </div>
                                 
-                                <div class="interactive-card" ontouchstart="event.preventDefault()">
-                                    <div class="card-front">
-                                        <span class="text-3xl mb-2">✨</span>
-                                        <h3 class="font-bold text-lg">Things I Value</h3>
-                                        <div class="mt-2 text-spiderverse-purple">
-                                            <span class="text-xs">Click to reveal</span>
-                                        </div>
-                                    </div>
-                                    <div class="card-back">
-                                        <ul class="list-disc list-inside">
-                                            <li><span class="font-bold">Authenticity</span> - Being true to oneself</li>
-                                            <li><span class="font-bold">Creativity</span> - Finding new perspectives</li>
-                                            <li><span class="font-bold">Personal Growth</span> - Continuous learning</li>
-                                            <li><span class="font-bold">Empathy</span> - Understanding others</li>
-                                        </ul>
+                                <div class="about-me-card" data-modal="values-modal">
+                                    <span class="text-3xl mb-2">✨</span>
+                                    <h3 class="font-bold text-lg">Things I Value</h3>
+                                    <div class="mt-2 text-spiderverse-purple">
+                                        <span class="text-xs">Click to reveal</span>
                                     </div>
                                 </div>
                             </div>
@@ -388,9 +528,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-digital-art" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Proficient in drawing and painting, with experience in character design, illustration, and digital storytelling using tools like Clip Studio Paint, Photoshop, and Procreate.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Proficient in drawing and painting, with experience in character design, illustration, and digital storytelling using tools like Clip Studio Paint, Photoshop, and Procreate.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -400,9 +542,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-web-dev" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Knowledgeable in front-end web development, including HTML, CSS, JavaScript, and React. Able to create responsive, user-friendly websites with a focus on accessibility and smooth user experience.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Knowledgeable in front-end web development, including HTML, CSS, JavaScript, and React. Able to create responsive, user-friendly websites with a focus on accessibility and smooth user experience.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -412,9 +556,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-uiux" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Understanding of design principles that prioritize the user experience, with skills in wireframing, prototyping, and basic user research.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Understanding of design principles that prioritize the user experience, with skills in wireframing, prototyping, and basic user research.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -424,9 +570,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-leadership" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Experience leading student initiatives, advocating for academic support, organizing events, and working with a team to achieve goals. Known for being detail-oriented, empathetic, and communicative.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Experience leading student initiatives, advocating for academic support, organizing events, and working with a team to achieve goals. Known for being detail-oriented, empathetic, and communicative.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -436,9 +584,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-communication" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Strong written and verbal communication skills, especially in creating clear and engaging content. Skilled at explaining complex ideas in a simple, understandable way.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Strong written and verbal communication skills, especially in creating clear and engaging content. Skilled at explaining complex ideas in a simple, understandable way.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -448,9 +598,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-writing" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Ability to craft engaging narratives, whether through visual media or written content. Passion for exploring character-driven, emotionally rich stories in manga, literature, and other media.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Ability to craft engaging narratives, whether through visual media or written content. Passion for exploring character-driven, emotionally rich stories in manga, literature, and other media.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -460,9 +612,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-problem-solving" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -472,9 +626,11 @@
                                             <span class="skill-toggle">+</span>
                                         </div>
                                         <div id="skill-content-time-management" class="skill-content">
-                                            <p class="mt-1 text-sm text-gray-700">
-                                                Able to balance multiple responsibilities effectively, from leadership roles to creative projects, ensuring tasks are completed on time with attention to detail.
-                                            </p>
+                                            <div class="skill-content-inner">
+                                                <p class="text-sm">
+                                                    Able to balance multiple responsibilities effectively, from leadership roles to creative projects, ensuring tasks are completed on time with attention to detail.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -504,38 +660,63 @@
             </div>
         </div>
     </div>
+    
+    <!-- Interactive Modals -->
+    <div class="modal-backdrop" id="mbti-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('mbti-modal')">×</button>
+            <h3 class="font-bold text-xl mb-4">MBTI: INFP</h3>
+            <p>As an INFP, I'm introspective, creative, and empathetic. I value authenticity and often look for the deeper meaning in experiences.</p>
+            <p class="mt-2">Traits: Creative, empathetic, idealistic, curious, and thoughtful.</p>
+        </div>
+    </div>
+    
+    <div class="modal-backdrop" id="game-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('game-modal')">×</button>
+            <h3 class="font-bold text-xl mb-4">Favorite Game: OMORI</h3>
+            <p>A psychological horror RPG that explores themes of anxiety, depression, and friendship through a surreal, dreamlike world.</p>
+            <p class="mt-2">I appreciate how it uses unique art and storytelling to explore complex emotions.</p>
+        </div>
+    </div>
+    
+    <div class="modal-backdrop" id="values-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('values-modal')">×</button>
+            <h3 class="font-bold text-xl mb-4">Things I Value</h3>
+            <ul class="list-disc list-inside">
+                <li><span class="font-bold">Authenticity</span> - Being true to oneself</li>
+                <li><span class="font-bold">Creativity</span> - Finding new perspectives</li>
+                <li><span class="font-bold">Personal Growth</span> - Continuous learning</li>
+                <li><span class="font-bold">Empathy</span> - Understanding others</li>
+            </ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>
-        // Initialize skill toggles
+        // Loading portal
         document.addEventListener('DOMContentLoaded', function() {
-            // Handle Interactive Cards
-            const cards = document.querySelectorAll('.interactive-card');
+            setTimeout(function() {
+                const loadingPortal = document.getElementById('loading-portal');
+                loadingPortal.classList.add('hidden');
+                
+                // Remove loading portal after animation completes
+                setTimeout(function() {
+                    loadingPortal.style.display = 'none';
+                }, 500);
+            }, 2000);
             
-            cards.forEach(card => {
-                // For click events
-                card.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    this.classList.toggle('flipped');
+            // Setup interactive "More About Me" cards
+            document.querySelectorAll('.about-me-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    openModal(modalId);
                 });
-                
-                // For touch events on mobile
-                card.addEventListener('touchstart', function(e) {
-                    // Prevent scrolling when touching the card
-                    e.preventDefault();
-                }, { passive: false });
-                
-                card.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    this.classList.toggle('flipped');
-                }, { passive: false });
             });
             
-            // Handle Skill Toggles
-            const skillHeaders = document.querySelectorAll('.skill-header');
-            
-            skillHeaders.forEach(header => {
+            // Setup skill toggles with improved animation
+            document.querySelectorAll('.skill-header').forEach(header => {
                 header.addEventListener('click', function() {
                     const skillId = this.getAttribute('data-skill-id');
                     const content = document.getElementById(`skill-content-${skillId}`);
@@ -545,15 +726,30 @@
                     content.classList.toggle('open');
                     toggle.classList.toggle('open');
                     
-                    // Set explicit height for animation
-                    if (content.classList.contains('open')) {
-                        content.style.height = content.scrollHeight + 'px';
-                        toggle.textContent = '−'; // Minus sign
-                    } else {
-                        content.style.height = '0';
-                        toggle.textContent = '+'; // Plus sign
-                    }
+                    // Update the toggle icon
+                    toggle.textContent = content.classList.contains('open') ? '×' : '+';
                 });
+            });
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modals when clicking outside
+        document.querySelectorAll('.modal-backdrop').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
             });
         });
     </script>

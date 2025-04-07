@@ -1,9 +1,10 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const nameRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     if (!nameRef.current) return;
@@ -19,7 +20,30 @@ const Home: React.FC = () => {
     };
     
     addRandomRotation();
+    
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    
+    return () => clearTimeout(timer);
   }, []);
+  
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black">
+        <div className="relative">
+          <div className="portal-ring" style={{ '--i': '0' } as React.CSSProperties}></div>
+          <div className="portal-ring" style={{ '--i': '1' } as React.CSSProperties}></div>
+          <div className="portal-ring" style={{ '--i': '2' } as React.CSSProperties}></div>
+          <div className="portal-ring" style={{ '--i': '3' } as React.CSSProperties}></div>
+          <div className="portal-ring" style={{ '--i': '4' } as React.CSSProperties}></div>
+          <div className="portal-ring" style={{ '--i': '5' } as React.CSSProperties}></div>
+          <div className="portal-center-glow"></div>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="page-container bg-gradient-to-br from-monet-blue/30 via-vangogh-yellow/30 to-monet-purple/30">
@@ -31,8 +55,8 @@ const Home: React.FC = () => {
         <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-tr from-spiderverse-pink to-spiderverse-yellow rounded-full blur-xl opacity-40 animate-float"></div>
         <div className="absolute bottom-40 right-40 w-24 h-24 bg-gradient-to-r from-vangogh-yellow to-vangogh-orange rounded-full blur-xl opacity-40 animate-rotate-slow"></div>
         
-        {/* Main Content - Improved centering */}
-        <div className="z-10 flex flex-col items-center w-full px-4 mt-24 md:mt-16">
+        {/* Main Content - Adjusted positioning with more space below navbar */}
+        <div className="z-10 flex flex-col items-center w-full px-4 mt-32 md:mt-24">
           <h1 className="comic-title text-spiderverse-purple mb-2 text-center">
             <div ref={nameRef} className="inline-flex flex-wrap justify-center">
               {'Oceana Viktoria'.split('').map((char, i) => (
