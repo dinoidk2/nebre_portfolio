@@ -76,7 +76,7 @@ const Hobbies: React.FC = () => {
                 style={{ transitionDelay: `${100 + index * 100}ms` }}
               >
                 <div 
-                  className="impressionist-card hover:shadow-xl cursor-pointer group relative overflow-hidden"
+                  className={`impressionist-card border-l-4 border-spiderverse-${hobby.title === "Painting" || hobby.title === "Drawing" ? "pink" : "yellow"} hover:shadow-xl cursor-pointer group relative overflow-hidden`}
                   onClick={() => setActiveHobby(hobby.title)}
                 >
                   <div className={`absolute top-0 left-0 w-2 h-full ${hobby.color}`}></div>

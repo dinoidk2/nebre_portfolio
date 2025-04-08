@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize interactive cards
   initializeInteractiveCards();
 
+  // Initialize profile modals
+  initializeProfileModals();
+
   // Ensure images load correctly
   fixImagePaths();
 });
@@ -176,67 +179,149 @@ function initializeSkillToggles() {
     return;
   }
 
-  // Fallback to vanilla JS implementation
-  const skillHeaders = document.querySelectorAll('.skill-item button');
+  // Fallback to vanilla JS implementation for profile.html
+  const skillHeaders = document.querySelectorAll('.skill-header');
   
-  skillHeaders.forEach(header => {
-    header.addEventListener('click', function() {
-      const skillItem = this.closest('.skill-item');
-      const description = skillItem.querySelector('.skill-description');
-      const toggle = this.querySelector('.skill-toggle-icon');
-      
-      // Get all other skill items
-      const allSkillItems = document.querySelectorAll('.skill-item');
-      
-      // Close all other open descriptions
-      allSkillItems.forEach(item => {
-        if (item !== skillItem) {
-          const otherDesc = item.querySelector('.skill-description');
-          const otherToggle = item.querySelector('.skill-toggle-icon');
-          
-          if (otherDesc && otherToggle) {
-            otherDesc.style.maxHeight = '0';
-            otherDesc.style.opacity = '0';
-            otherDesc.style.padding = '0';
-            otherDesc.style.marginTop = '0';
-            otherToggle.textContent = '+';
-            otherToggle.style.transform = 'rotate(0deg)';
-          }
-        }
-      });
-      
-      // Toggle the clicked description
-      if (description && toggle) {
-        const isOpen = description.style.maxHeight !== '0px' && description.style.maxHeight !== '';
+  if (skillHeaders.length > 0) {
+    skillHeaders.forEach(header => {
+      header.addEventListener('click', function() {
+        const skillId = this.getAttribute('data-skill-id');
+        const content = document.getElementById(`skill-content-${skillId}`);
+        const toggle = this.querySelector('.skill-toggle');
         
-        if (isOpen) {
-          description.style.maxHeight = '0';
-          description.style.opacity = '0';
-          description.style.padding = '0';
-          description.style.marginTop = '0';
-          toggle.textContent = '+';
-          toggle.style.transform = 'rotate(0deg)';
-        } else {
-          description.style.maxHeight = '500px';
-          description.style.opacity = '1';
-          description.style.padding = '8px';
-          description.style.marginTop = '8px';
-          toggle.textContent = '×';
-          toggle.style.transform = 'rotate(45deg)';
-        }
-      }
+        if (!content || !toggle) return;
+        
+        // Close all other skill contents
+        document.querySelectorAll('.skill-content').forEach(otherContent => {
+          if (otherContent !== content) {
+            otherContent.classList.remove('open');
+          }
+        });
+        
+        document.querySelectorAll('.skill-toggle').forEach(otherToggle => {
+          if (otherToggle !== toggle) {
+            otherToggle.classList.remove('open');
+            otherToggle.textContent = '+';
+          }
+        });
+        
+        // Toggle the clicked content
+        content.classList.toggle('open');
+        toggle.classList.toggle('open');
+        toggle.textContent = content.classList.contains('open') ? '×' : '+';
+      });
     });
-  });
+  }
 }
 
 // Initialize hobby modals
 function initializeHobbyModals() {
-  // Setup modal interactions for different pages
+  // Vanilla JS implementation for hobbies.html
+  if (document.querySelector('#hobbies')) {
+    const openHobbyModal = (hobby) => {
+      const modalContainer = document.getElementById('modal-container');
+      const modal = document.getElementById(`${hobby}-modal`);
+      
+      if (modalContainer && modal) {
+        modalContainer.classList.remove('hidden');
+        modal.classList.remove('hidden');
+      }
+    };
+    
+    const closeHobbyModal = () => {
+      const modalContainer = document.getElementById('modal-container');
+      const modals = document.querySelectorAll('.hobby-modal');
+      
+      if (modalContainer) {
+        modalContainer.classList.add('hidden');
+        modals.forEach(modal => modal.classList.add('hidden'));
+      }
+    };
+    
+    // Attach openHobbyModal to global scope for inline onclick handlers
+    window.openHobbyModal = openHobbyModal;
+    window.closeHobbyModal = closeHobbyModal;
+    
+    // Add event listeners if not using inline onclick
+    document.querySelectorAll('[data-hobby]').forEach(card => {
+      const hobby = card.getAttribute('data-hobby');
+      card.addEventListener('click', () => openHobbyModal(hobby));
+    });
+    
+    // Close when clicking outside modal
+    document.getElementById('modal-container')?.addEventListener('click', e => {
+      if (e.target.id === 'modal-container') {
+        closeHobbyModal();
+      }
+    });
+  }
 }
 
 // Initialize interactive cards
 function initializeInteractiveCards() {
   // No longer needed - all modals and interactive elements now use React components
+}
+
+// Initialize profile modals
+function initializeProfileModals() {
+  // Function to open modal
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  // Function to close modal
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  // Expose functions to window for inline handlers
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  // Add click event listeners to about-me cards
+  const aboutMeCards = document.querySelectorAll('.about-me-card');
+  if (aboutMeCards) {
+    aboutMeCards.forEach(card => {
+      card.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        if (modalId) {
+          openModal(modalId);
+        }
+      });
+    });
+  }
+
+  // Add click event listeners to close modal when clicking outside
+  const modalBackdrops = document.querySelectorAll('.modal-backdrop');
+  if (modalBackdrops) {
+    modalBackdrops.forEach(backdrop => {
+      backdrop.addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  }
+
+  // Add click event listeners to close buttons
+  const closeButtons = document.querySelectorAll('.modal-close');
+  if (closeButtons) {
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const modalId = this.closest('.modal-backdrop').id;
+        closeModal(modalId);
+      });
+    });
+  }
 }
 
 // Copy to clipboard function
