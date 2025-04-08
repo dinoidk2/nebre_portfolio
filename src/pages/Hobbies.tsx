@@ -86,7 +86,7 @@ const Hobbies: React.FC = () => {
                 style={{ transitionDelay: `${100 + index * 100}ms` }}
               >
                 <div 
-                  className={`impressionist-card border-l-4 border-spiderverse-${hobby.title === "Painting" || hobby.title === "Drawing" ? "pink" : "yellow"} hover:shadow-xl cursor-pointer group relative overflow-hidden`}
+                  className={`impressionist-card border-l-4 border-spiderverse-${hobby.title === "Painting" || hobby.title === "Drawing" ? "pink" : "yellow"} hover:shadow-xl cursor-pointer group relative overflow-hidden transform hover:scale-102 transition-transform`}
                   onClick={() => {
                     setActiveHobby(hobby.title);
                     console.log('Hobby clicked:', hobby.title);
@@ -105,7 +105,7 @@ const Hobbies: React.FC = () => {
                   
                   <div className="mt-4 text-spiderverse-purple font-semibold flex items-center group-hover:translate-x-2 transition-transform">
                     <span className="mr-2">Learn more</span>
-                    <span>→</span>
+                    <span className="animate-bounce inline-block">→</span>
                   </div>
                 </div>
               </div>
@@ -176,7 +176,7 @@ const Hobbies: React.FC = () => {
                 'Psychological Drama',
                 'Philosophical Sci-Fi / Speculative Fiction'
               ].map((genre) => (
-                <div key={genre} className="bg-white/50 px-3 py-1 rounded-full text-sm">
+                <div key={genre} className="bg-white/50 px-3 py-1 rounded-full text-sm hover:bg-spiderverse-yellow/30 transition-colors">
                   {genre}
                 </div>
               ))}
@@ -210,7 +210,7 @@ const Hobbies: React.FC = () => {
                 { title: "Haikyuu!!", desc: "Inspiring sports drama" },
                 { title: "Alien Stage", desc: "Unique and emotionally resonant" },
               ].map((show) => (
-                <div key={show.title} className="bg-white/70 p-4 rounded-lg">
+                <div key={show.title} className="bg-white/70 p-4 rounded-lg hover:bg-white/90 transition-colors hover:shadow-md">
                   <h4 className="font-bold">{show.title}</h4>
                   <p className="text-sm mt-1">{show.desc}</p>
                 </div>

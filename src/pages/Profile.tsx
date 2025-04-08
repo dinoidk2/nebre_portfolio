@@ -7,7 +7,7 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/component
 
 const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; icon: string; color: string }> = ({ title, content, icon, color }) => {
   return (
-    <div className={`impressionist-card border-l-4 ${color} mb-4 hover:-rotate-1`}>
+    <div className={`impressionist-card border-l-4 ${color} mb-4 hover:-rotate-1 transition-transform hover:shadow-lg`}>
       <div className="flex items-center mb-2">
         <div className={`w-8 h-8 rounded-full ${color.replace('border', 'bg')} flex items-center justify-center text-white mr-3`}>
           {icon}
@@ -76,8 +76,7 @@ const Profile: React.FC = () => {
     "Project Leadership": "Experience leading student initiatives, advocating for academic support, organizing events, and working with a team to achieve goals. Known for being detail-oriented, empathetic, and communicative.",
     "Communication": "Strong written and verbal communication skills, especially in creating clear and engaging content. Skilled at explaining complex ideas in a simple, understandable way.",
     "Creative Writing & Storytelling": "Ability to craft engaging narratives, whether through visual media or written content. Passion for exploring character-driven, emotionally rich stories in manga, literature, and other media.",
-    "Problem Solving": "Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces.",
-    "Time Management": "Able to balance multiple responsibilities effectively, from leadership roles to creative projects, ensuring tasks are completed on time with attention to detail."
+    "Problem Solving": "Practical, solution-oriented thinker. Adept at finding innovative ways to address challenges in both creative and technical spaces."
   };
   
   return (
@@ -97,14 +96,14 @@ const Profile: React.FC = () => {
               <img 
                 src="/lovable-uploads/e19a45aa-9e40-412c-bb19-55d218ffbbe0.png" 
                 alt="Oceana Viktoria" 
-                className="w-full max-w-md h-auto object-cover object-center rounded-lg comic-border relative z-10 mx-auto"
+                className="w-full max-w-md h-auto object-cover object-center rounded-lg comic-border relative z-10 mx-auto hover:scale-102 transition-transform duration-300"
               />
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-spiderverse-blue comic-border p-2 rounded-full z-20 transform rotate-12 flex items-center justify-center text-white font-bold">
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-spiderverse-blue comic-border p-2 rounded-full z-20 transform rotate-12 flex items-center justify-center text-white font-bold animate-pulse-light">
                 15
               </div>
             </div>
             
-            <div className="impressionist-card w-full max-w-lg mx-auto mb-6 text-left">
+            <div className="impressionist-card w-full max-w-lg mx-auto mb-6 text-left hover:shadow-xl transition-shadow">
               <h2 className="font-bold text-2xl mb-2">Oceana Viktoria S. Nebre</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -129,7 +128,7 @@ const Profile: React.FC = () => {
               content={
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-2">
                   {['SEVENTEEN', 'Cup Of Joe', 'My Bloody Valentine', 'Paramore'].map((artist, index) => (
-                    <div key={index} className="bg-white/50 rounded-lg p-3 transform transition-transform hover:scale-105 hover:shadow-md">
+                    <div key={index} className="bg-white/50 rounded-lg p-3 transform transition-transform hover:scale-105 hover:shadow-md cursor-pointer">
                       <p className="font-medium">{artist}</p>
                     </div>
                   ))}
@@ -217,7 +216,7 @@ const Profile: React.FC = () => {
           
           {/* About Me Section */}
           <div className={`transition-all duration-500 delay-200 ${isLoaded ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="impressionist-card mb-6 relative overflow-hidden">
+            <div className="impressionist-card mb-6 relative overflow-hidden hover:shadow-xl transition-shadow">
               <div className="absolute top-0 left-0 h-full w-2 bg-gradient-to-b from-monet-purple via-monet-blue to-monet-green"></div>
               
               <h2 className="comic-subtitle text-spiderverse-purple mb-4 text-left">About Me</h2>
@@ -298,7 +297,7 @@ const Profile: React.FC = () => {
                     ].map((interest, index) => (
                       <span 
                         key={index} 
-                        className="bg-white/50 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-105"
+                        className="bg-white/50 px-3 py-1 rounded-full text-sm transform transition-transform hover:scale-105 hover:bg-spiderverse-yellow/30 cursor-pointer"
                       >
                         {interest}
                       </span>

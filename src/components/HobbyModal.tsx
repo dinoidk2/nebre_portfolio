@@ -64,7 +64,7 @@ const HobbyModal: React.FC<HobbyModalProps> = ({ open, onClose, title, children 
       <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" aria-hidden="true" />
       
       <div 
-        className="bg-white/90 backdrop-blur-md rounded-lg w-full max-w-2xl max-h-[85vh] shadow-xl relative overflow-hidden"
+        className="bg-white/90 backdrop-blur-md rounded-lg w-full max-w-xl max-h-[75vh] shadow-xl relative overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button - made more obvious and larger for mobile */}
@@ -82,7 +82,7 @@ const HobbyModal: React.FC<HobbyModalProps> = ({ open, onClose, title, children 
         <div className="p-6">
           <h2 id={`modal-title-${title}`} className="comic-subtitle mb-4">{title}</h2>
           
-          <ScrollArea className="h-[60vh] pr-4">
+          <ScrollArea className="h-[50vh] pr-4">
             <div className="pr-2">
               {children}
             </div>
