@@ -56,6 +56,16 @@ const Hobbies: React.FC = () => {
   
   useEffect(() => {
     setIsLoaded(true);
+
+    // Expose function to window for vanilla JS access
+    (window as any).openHobbyModal = (hobbyTitle: string) => {
+      setActiveHobby(hobbyTitle);
+    };
+
+    return () => {
+      // Clean up when component unmounts
+      delete (window as any).openHobbyModal;
+    };
   }, []);
   
   return (
@@ -77,7 +87,10 @@ const Hobbies: React.FC = () => {
               >
                 <div 
                   className={`impressionist-card border-l-4 border-spiderverse-${hobby.title === "Painting" || hobby.title === "Drawing" ? "pink" : "yellow"} hover:shadow-xl cursor-pointer group relative overflow-hidden`}
-                  onClick={() => setActiveHobby(hobby.title)}
+                  onClick={() => {
+                    setActiveHobby(hobby.title);
+                    console.log('Hobby clicked:', hobby.title);
+                  }}
                 >
                   <div className={`absolute top-0 left-0 w-2 h-full ${hobby.color}`}></div>
                   

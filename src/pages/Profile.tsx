@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 
 const InfoCard: React.FC<{ title: string; content: string | React.ReactNode; icon: string; color: string }> = ({ title, content, icon, color }) => {
   return (
@@ -56,6 +57,7 @@ const Profile: React.FC = () => {
     
     // Add JS for skill toggles
     const handleSkillToggle = (skillName: string) => {
+      console.log('Toggle clicked for:', skillName);
       setExpandedSkill(prevSkill => prevSkill === skillName ? null : skillName);
     };
 
@@ -135,7 +137,7 @@ const Profile: React.FC = () => {
               }
             />
 
-            {/* Interactive Cards Section - Changed to Dialog/Popover for popups */}
+            {/* Interactive Cards Section - Dialog components for popups */}
             <InfoCard 
               title="More About Me" 
               icon="💡" 
@@ -252,7 +254,10 @@ const Profile: React.FC = () => {
                       {Object.entries(skillsInfo).map(([skill, description], index) => (
                         <div key={index} className="mb-3 skill-item">
                           <button
-                            onClick={() => setExpandedSkill(expandedSkill === skill ? null : skill)}
+                            onClick={() => {
+                              console.log('Skill toggle clicked:', skill);
+                              setExpandedSkill(expandedSkill === skill ? null : skill);
+                            }}
                             className="font-bold text-left w-full flex justify-between items-center py-2 hover:bg-white/30 px-2 rounded-md transition-all duration-200"
                             data-skill-name={skill}
                           >

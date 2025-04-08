@@ -191,20 +191,6 @@ function initializeSkillToggles() {
         
         if (!content || !toggle) return;
         
-        // Close all other skill contents
-        document.querySelectorAll('.skill-content').forEach(otherContent => {
-          if (otherContent !== content) {
-            otherContent.classList.remove('open');
-          }
-        });
-        
-        document.querySelectorAll('.skill-toggle').forEach(otherToggle => {
-          if (otherToggle !== toggle) {
-            otherToggle.classList.remove('open');
-            otherToggle.textContent = '+';
-          }
-        });
-        
         // Toggle the clicked content
         content.classList.toggle('open');
         toggle.classList.toggle('open');
@@ -216,8 +202,11 @@ function initializeSkillToggles() {
 
 // Initialize hobby modals
 function initializeHobbyModals() {
-  // Vanilla JS implementation for hobbies.html
+  // React implementation handles its own modals, this is for vanilla HTML version
   if (document.querySelector('#hobbies')) {
+    const hobbyCards = document.querySelectorAll('[data-hobby]');
+    
+    // Define open/close functions
     const openHobbyModal = (hobby) => {
       const modalContainer = document.getElementById('modal-container');
       const modal = document.getElementById(`${hobby}-modal`);
@@ -242,24 +231,36 @@ function initializeHobbyModals() {
     window.openHobbyModal = openHobbyModal;
     window.closeHobbyModal = closeHobbyModal;
     
-    // Add event listeners if not using inline onclick
-    document.querySelectorAll('[data-hobby]').forEach(card => {
+    // Add event listeners to hobby cards
+    hobbyCards.forEach(card => {
       const hobby = card.getAttribute('data-hobby');
       card.addEventListener('click', () => openHobbyModal(hobby));
     });
     
     // Close when clicking outside modal
-    document.getElementById('modal-container')?.addEventListener('click', e => {
-      if (e.target.id === 'modal-container') {
-        closeHobbyModal();
-      }
-    });
+    const modalContainer = document.getElementById('modal-container');
+    if (modalContainer) {
+      modalContainer.addEventListener('click', e => {
+        if (e.target.id === 'modal-container') {
+          closeHobbyModal();
+        }
+      });
+    }
   }
 }
 
 // Initialize interactive cards
 function initializeInteractiveCards() {
-  // No longer needed - all modals and interactive elements now use React components
+  // Interactive card functionality for HTML version
+  const interactiveCards = document.querySelectorAll('.interactive-card');
+  
+  if (interactiveCards.length > 0) {
+    interactiveCards.forEach(card => {
+      card.addEventListener('click', function() {
+        this.classList.toggle('flipped');
+      });
+    });
+  }
 }
 
 // Initialize profile modals

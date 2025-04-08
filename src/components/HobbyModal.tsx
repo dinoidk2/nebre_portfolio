@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface HobbyModalProps {
@@ -38,10 +38,29 @@ export const ImageCarousel: React.FC<{ images: Image[] }> = ({ images }) => {
 };
 
 const HobbyModal: React.FC<HobbyModalProps> = ({ open, onClose, title, children }) => {
+  useEffect(() => {
+    // Prevent body scroll when modal is open
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   if (!open) return null;
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4" 
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={`modal-title-${title}`}
+    >
       <div className="fixed inset-0 bg-black/40 backdrop-blur-sm" aria-hidden="true" />
       
       <div 
@@ -51,13 +70,17 @@ const HobbyModal: React.FC<HobbyModalProps> = ({ open, onClose, title, children 
         {/* Close button - made more obvious and larger for mobile */}
         <button 
           className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full bg-spiderverse-pink text-white hover:bg-spiderverse-purple transition-colors z-10"
-          onClick={onClose}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
+          aria-label="Close modal"
         >
           ✕
         </button>
         
         <div className="p-6">
-          <h2 className="comic-subtitle mb-4">{title}</h2>
+          <h2 id={`modal-title-${title}`} className="comic-subtitle mb-4">{title}</h2>
           
           <ScrollArea className="h-[60vh] pr-4">
             <div className="pr-2">
